@@ -225,6 +225,31 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 color = Color(0.763146, 0.436291, 3.85046e-07, 1)
 
+[node name="Temp Platform9" type="StaticBody2D" parent="foreGround"]
+position = Vector2(-569, -15)
+rotation = 1.5708
+scale = Vector2(6, 2)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="foreGround/Temp Platform9"]
+shape = SubResource("RectangleShape2D_txyva")
+
+[node name="ColorRect" type="ColorRect" parent="foreGround/Temp Platform9"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -20.0
+offset_right = 60.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0.763146, 0.436291, 3.85046e-07, 1)
+
 [node name="Player" parent="." instance=ExtResource("1_24j1h")]
 position = Vector2(0, -136)
 metadata/_edit_group_ = true

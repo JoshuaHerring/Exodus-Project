@@ -12,4 +12,14 @@ func _process(delta):
 
 
 func _on_body_entered(body):
-	get_tree().reload_current_scene()
+	checkForPlayer(body)
+	checkForProjectile(body)
+
+
+func checkForPlayer(body):
+	if body.is_in_group("player"):
+		get_tree().reload_current_scene()
+
+func checkForProjectile(body):
+	if body.is_in_group('projectile'):
+		body.queue_free()

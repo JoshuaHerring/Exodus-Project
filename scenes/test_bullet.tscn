@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7cn6kybht78s"]
+
+[ext_resource type="Script" path="res://scripts/test_bullet.gd" id="1_kisun"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3k3gp"]
+radius = 2.0
+
+[node name="testBullet" type="RigidBody2D" groups=["projectile"]]
+script = ExtResource("1_kisun")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, 1.5)
+shape = SubResource("CircleShape2D_3k3gp")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 3.0
+offset_bottom = 3.0
