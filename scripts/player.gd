@@ -1,25 +1,31 @@
 extends CharacterBody2D
 
+const TEST_BULLET = preload("res://scenes/test_bullet.tscn")
+@onready var hand = $Hand
+
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -500.0
 const TERMINAL_VELOCITY = 600
 const GRAVITY = 2000
-const WALL_SLIDE_VELOCITY = 200
-const TEST_BULLET = preload("res://scenes/test_bullet.tscn")
+const WALL_SLIDE_VELOCITY = 150
+const HAND_DISTANCE = 20
+
+var bullet_speed = 500
 
 # DIVIDE THE LOGIC UP INTO FUNCTIONS AND ABSTRACT
 func _physics_process(delta):
 	movement(delta)
-	shoot()
+	#shoot()
+	aim()
 	move_and_slide()
 
-
-func shoot():
+func shoot(bullet_velocity, bullet_start):
 	if Input.is_action_just_pressed("fire"):
 		print('bang')
 		var bulleteInstance = TEST_BULLET.instantiate()
-		bulleteInstance.position = position
+		bulleteInstance.position = bullet_start
+		bulleteInstance.linear_velocity = bullet_velocity
 		get_parent().add_child(bulleteInstance)
 
 func gravity(delta):
@@ -56,6 +62,24 @@ func terminalVelocity():
 	# Prevent the player from exceding terminal velocity
 	if velocity.y > TERMINAL_VELOCITY:
 		velocity.y = TERMINAL_VELOCITY
+
+func aim():
+	var cursor_position = get_global_mouse_position()
+	var player_position = global_position
+	# Calculate the direction vector from the player to the cursor
+	var direction_vector = (cursor_position - player_position).normalized()
+	
+	# Use the hand to aim
+	hand.global_position = player_position + direction_vector * HAND_DISTANCE
+	
+	# Optionally, rotate the hand to face the cursor var direction_vector = (cursor_position - player_position).normalized() hand.rotation = direction_vector.angle()
+	
+	# Calculate velocity
+	var bullet_velocity = direction_vector * bullet_speed
+	# Shoot the bullet with the above velocity
+	shoot(bullet_velocity, hand.global_position)
+
+	
 
 func movement(delta):
 	gravity(delta)

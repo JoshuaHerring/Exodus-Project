@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3krxyejii3ux"]
+[gd_scene load_steps=5 format=3 uid="uid://d3krxyejii3ux"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_uj3tq"]
 
@@ -8,6 +8,10 @@
 radius = 10.0
 height = 30.0
 
+[sub_resource type="SphereMesh" id="SphereMesh_3pr8i"]
+radius = 3.0
+height = 6.0
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_uj3tq")
 
@@ -16,3 +20,8 @@ shape = SubResource("CapsuleShape2D_fnv6q")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
 mesh = SubResource("CapsuleMesh_4k6qb")
+
+[node name="Hand" type="Node2D" parent="."]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Hand"]
+mesh = SubResource("SphereMesh_3pr8i")
