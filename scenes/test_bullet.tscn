@@ -1,18 +1,34 @@
-[gd_scene load_steps=3 format=3 uid="uid://c7cn6kybht78s"]
+[gd_scene load_steps=6 format=3 uid="uid://c7cn6kybht78s"]
 
 [ext_resource type="Script" path="res://scripts/test_bullet.gd" id="1_kisun"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_i551y"]
+bounce = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3k3gp"]
 radius = 2.0
 
+[sub_resource type="SphereMesh" id="SphereMesh_xnkh6"]
+radius = 2.0
+height = 4.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_558a0"]
+radius = 2.0
+
 [node name="testBullet" type="RigidBody2D" groups=["projectile"]]
+physics_material_override = SubResource("PhysicsMaterial_i551y")
 script = ExtResource("1_kisun")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1.5, 1.5)
 shape = SubResource("CircleShape2D_3k3gp")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 3.0
-offset_bottom = 3.0
-color = Color(0.129412, 0.219608, 0.164706, 1)
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+mesh = SubResource("SphereMesh_xnkh6")
+
+[node name="collisionDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collisionDetector"]
+shape = SubResource("CircleShape2D_558a0")
+
+[connection signal="area_entered" from="collisionDetector" to="." method="_on_collision_detector_area_entered"]
+[connection signal="body_entered" from="collisionDetector" to="." method="_on_collision_detector_body_entered"]

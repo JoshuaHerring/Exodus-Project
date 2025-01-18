@@ -22,6 +22,7 @@ shape = SubResource("CapsuleShape2D_fnv6q")
 mesh = SubResource("CapsuleMesh_4k6qb")
 
 [node name="Hand" type="Node2D" parent="."]
+metadata/_edit_group_ = true
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Hand"]
 mesh = SubResource("SphereMesh_3pr8i")

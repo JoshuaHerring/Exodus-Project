@@ -12,6 +12,8 @@ const WALL_SLIDE_VELOCITY = 150
 const HAND_DISTANCE = 20
 
 var bullet_speed = 500
+var bullet_bounces = 0
+var bullet_size = 1
 
 # DIVIDE THE LOGIC UP INTO FUNCTIONS AND ABSTRACT
 func _physics_process(delta):
@@ -22,11 +24,12 @@ func _physics_process(delta):
 
 func shoot(bullet_velocity, bullet_start):
 	if Input.is_action_just_pressed("fire"):
-		print('bang')
 		var bulleteInstance = TEST_BULLET.instantiate()
 		bulleteInstance.position = bullet_start
 		bulleteInstance.linear_velocity = bullet_velocity
 		get_parent().add_child(bulleteInstance)
+		
+		bulleteInstance.readyBulletVariables(bullet_bounces, bullet_size)
 
 func gravity(delta):
 	# Handle gravity
@@ -71,8 +74,6 @@ func aim():
 	
 	# Use the hand to aim
 	hand.global_position = player_position + direction_vector * HAND_DISTANCE
-	
-	# Optionally, rotate the hand to face the cursor var direction_vector = (cursor_position - player_position).normalized() hand.rotation = direction_vector.angle()
 	
 	# Calculate velocity
 	var bullet_velocity = direction_vector * bullet_speed
