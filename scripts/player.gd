@@ -3,24 +3,33 @@ extends CharacterBody2D
 const BULLET = preload("res://scenes/bullet.tscn")
 @onready var hand = $Hand
 
-
 const SPEED = 300.0
 const JUMP_VELOCITY = -500.0
 const TERMINAL_VELOCITY = 600
 const GRAVITY = 2000
 const WALL_SLIDE_VELOCITY = 150
 const HAND_DISTANCE = 20
+const MAX_HEALTH = 100
+const RESPAWN_TIMER_MAX = 3
 
+var health = MAX_HEALTH
+var alive = true
+var damage = 110
 var bullet_speed = 500
 var bullet_bounces = 0
 var bullet_size = 1
+var respawn_timer = RESPAWN_TIMER_MAX
 
 # DIVIDE THE LOGIC UP INTO FUNCTIONS AND ABSTRACT
 func _physics_process(delta):
-	movement(delta)
-	#shoot()
-	aim()
-	move_and_slide()
+	if !alive:
+		respawn_timer -= delta
+		if respawn_timer < 0:
+			setAlive()
+	else:
+		movement(delta)
+		aim()
+		move_and_slide()
 
 func shoot(bullet_velocity, bullet_start):
 	if Input.is_action_just_pressed("fire"):
@@ -29,7 +38,7 @@ func shoot(bullet_velocity, bullet_start):
 		bulleteInstance.linear_velocity = bullet_velocity
 		get_parent().add_child(bulleteInstance)
 		
-		bulleteInstance.modifyBulletVariables(bullet_bounces, bullet_size)
+		bulleteInstance.modifyBulletVariables(damage, bullet_bounces, bullet_size)
 
 func gravity(delta):
 	# Handle gravity
@@ -80,6 +89,21 @@ func aim():
 	# Shoot the bullet with the above velocity
 	shoot(bullet_velocity, hand.global_position)
 
+func minusHealth(healthChange):
+	health -= healthChange
+	print(health)
+	if health < 0:
+		setDead()
+
+func setDead():
+	alive = false
+
+
+func setAlive():
+	alive = true
+	health = MAX_HEALTH
+	respawn_timer = RESPAWN_TIMER_MAX
+	
 	
 
 func movement(delta):

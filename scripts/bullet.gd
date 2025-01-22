@@ -5,6 +5,7 @@ extends RigidBody2D
 @onready var collision_detector = $collisionDetector/CollisionShape2D
 
 var lifespan = 5
+var damage = 10
 var bounces = 1
 
 func _ready():
@@ -18,8 +19,9 @@ func _process(delta):
 
 # call this to modify the values of a bullet
 # Normally called when bullets are shot
-func modifyBulletVariables(addBounces = 0, addSize = 0):
+func modifyBulletVariables(addDamage = 0, addBounces = 0, addSize = 0):
 	bounces += addBounces
+	damage += addDamage
 	
 	collision_shape_2d.scale += Vector2(addSize, addSize)
 	mesh_instance_2d.scale += Vector2(addSize, addSize)
@@ -32,6 +34,9 @@ func _on_collision_detector_area_entered(area):
 		queue_free()
 
 func _on_collision_detector_body_entered(body):
+	if body.is_in_group('player'):
+		body.minusHealth(damage)
+		
 	if bounces > 0:
 		bounces -= 1
 	else:
