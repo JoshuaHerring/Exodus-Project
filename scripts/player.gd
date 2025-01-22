@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const TEST_BULLET = preload("res://scenes/test_bullet.tscn")
+const BULLET = preload("res://scenes/bullet.tscn")
 @onready var hand = $Hand
 
 
@@ -24,12 +24,12 @@ func _physics_process(delta):
 
 func shoot(bullet_velocity, bullet_start):
 	if Input.is_action_just_pressed("fire"):
-		var bulleteInstance = TEST_BULLET.instantiate()
+		var bulleteInstance = BULLET.instantiate()
 		bulleteInstance.position = bullet_start
 		bulleteInstance.linear_velocity = bullet_velocity
 		get_parent().add_child(bulleteInstance)
 		
-		bulleteInstance.readyBulletVariables(bullet_bounces, bullet_size)
+		bulleteInstance.modifyBulletVariables(bullet_bounces, bullet_size)
 
 func gravity(delta):
 	# Handle gravity

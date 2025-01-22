@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c7cn6kybht78s"]
 
-[ext_resource type="Script" path="res://scripts/test_bullet.gd" id="1_kisun"]
+[ext_resource type="Script" path="res://scripts/bullet.gd" id="1_8oru1"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_i551y"]
 bounce = 1.0
@@ -15,9 +15,9 @@ height = 4.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_558a0"]
 radius = 2.0
 
-[node name="testBullet" type="RigidBody2D" groups=["projectile"]]
+[node name="Bullet" type="RigidBody2D" groups=["projectile"]]
 physics_material_override = SubResource("PhysicsMaterial_i551y")
-script = ExtResource("1_kisun")
+script = ExtResource("1_8oru1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_3k3gp")

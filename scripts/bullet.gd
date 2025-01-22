@@ -6,18 +6,19 @@ extends RigidBody2D
 
 var lifespan = 5
 var bounces = 1
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _ready():
+	pass
+
 func _process(delta):
 	
 	if(lifespan < 0):
 		queue_free()
 	lifespan -= delta
 
-func readyBulletVariables(addBounces = 0, addSize = 0):
+# call this to modify the values of a bullet
+# Normally called when bullets are shot
+func modifyBulletVariables(addBounces = 0, addSize = 0):
 	bounces += addBounces
 	
 	collision_shape_2d.scale += Vector2(addSize, addSize)
