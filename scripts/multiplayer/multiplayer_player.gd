@@ -16,6 +16,7 @@ const RESPAWN_TIMER_MAX = 3
 
 var direction = 1
 var do_jump = false
+var do_shoot = false
 var _is_on_floor = true
 var health = MAX_HEALTH
 var alive = true
@@ -24,6 +25,8 @@ var bullet_speed = 500
 var bullet_bounces = 0
 var bullet_size = 1
 var respawn_timer = RESPAWN_TIMER_MAX
+# The direction to shoot the bullet based off of the aim function
+var bullet_velocity
 
 @export var player_id := 1:
 	set(id):
@@ -35,7 +38,7 @@ var respawn_timer = RESPAWN_TIMER_MAX
 
 # DIVIDE THE LOGIC UP INTO FUNCTIONS AND ABSTRACT
 func _physics_process(delta):
-
+	cursor_position = get_global_mouse_position()
 	if !alive:
 		respawn_timer -= delta
 		if respawn_timer < 0:
@@ -43,11 +46,12 @@ func _physics_process(delta):
 	else:
 		if multiplayer.is_server():
 			movement(delta)
-			aim()
+			#aim()
 			move_and_slide()
 
 func shoot(bullet_velocity, bullet_start):
-	if Input.is_action_just_pressed("fire"):
+	if do_shoot:
+		do_shoot = false
 		var bulleteInstance = BULLET.instantiate()
 		bulleteInstance.position = bullet_start
 		bulleteInstance.linear_velocity = bullet_velocity
@@ -94,8 +98,7 @@ func terminalVelocity():
 	if velocity.y > TERMINAL_VELOCITY:
 		velocity.y = TERMINAL_VELOCITY
 
-func aim():
-	var cursor_position = get_global_mouse_position()
+func aim(cursor_position):
 	var player_position = global_position
 	# Calculate the direction vector from the player to the cursor
 	var direction_vector = (cursor_position - player_position).normalized()

@@ -3,6 +3,7 @@ extends MultiplayerSynchronizer
 @onready var player = $".."
 
 var input_direction
+var cursor_posiiton
 # Called when the node enters the scene tree for the first time.
 func _ready():
 #	If the multiplayer authority is not equal to the current multiplayer id then disable the process
@@ -19,9 +20,22 @@ func _physics_process(delta):
 func _process(delta):
 	if Input.is_action_just_pressed("jump"):
 		jump.rpc()
+	if Input.is_action_just_pressed("fire"):
+		fire.rpc()
+	aim.rpc(player.cursor_position)
 		
-# rpc = remte procedure call
+# rpc = remte procedure callw
 @rpc("call_local")
 func jump():
 	if multiplayer.is_server():
 		player.do_jump = true
+
+@rpc("call_local")
+func fire():
+	if multiplayer.is_server():
+		player.do_shoot = true
+		
+@rpc('call_local')
+func aim(target):
+	cursor_posiiton = target
+	player.aim(cursor_posiiton)
