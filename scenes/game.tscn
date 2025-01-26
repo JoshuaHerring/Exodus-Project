@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://ckp5aaa5o8pr5"]
+[gd_scene load_steps=10 format=3 uid="uid://ckp5aaa5o8pr5"]
 
-[ext_resource type="PackedScene" uid="uid://d3krxyejii3ux" path="res://scenes/player.tscn" id="1_24j1h"]
-[ext_resource type="Script" path="res://scripts/reset_area.gd" id="2_eq6hj"]
+[ext_resource type="Script" path="res://scripts/reset_area.gd" id="1_x7kh7"]
+[ext_resource type="Script" path="res://scenes/game_manager.gd" id="2_j34bk"]
+[ext_resource type="PackedScene" uid="uid://d3krxyejii3ux" path="res://scenes/player.tscn" id="3_3j7of"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_a80c7"]
 size = Vector3(650, 1150, 1)
@@ -22,7 +23,7 @@ size = Vector2(1500, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0qu6x"]
 size = Vector2(20, 2000)
 
-[node name="Main" type="Node2D"]
+[node name="Game" type="Node2D"]
 
 [node name="background" type="MeshInstance2D" parent="."]
 rotation = 1.5708
@@ -250,12 +251,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 color = Color(0.763146, 0.436291, 3.85046e-07, 1)
 
-[node name="Player" parent="." instance=ExtResource("1_24j1h")]
-position = Vector2(0, -136)
-metadata/_edit_group_ = true
-
 [node name="resetArea" type="Area2D" parent="."]
-script = ExtResource("2_eq6hj")
+script = ExtResource("1_x7kh7")
 
 [node name="bottom" type="CollisionShape2D" parent="resetArea"]
 position = Vector2(8, 390)
@@ -269,4 +266,50 @@ shape = SubResource("RectangleShape2D_0qu6x")
 position = Vector2(745, -603)
 shape = SubResource("RectangleShape2D_0qu6x")
 
+[node name="MultyplayerHud" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -524.0
+offset_top = -323.0
+offset_right = -423.0
+offset_bottom = -252.0
+metadata/_edit_group_ = true
+
+[node name="Panel" type="Panel" parent="MultyplayerHud"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -4.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MultyplayerHud/Panel"]
+layout_mode = 0
+offset_right = 44.0
+offset_bottom = 66.0
+
+[node name="Host" type="Button" parent="MultyplayerHud/Panel/VBoxContainer"]
+layout_mode = 2
+text = "Host Game"
+
+[node name="Join" type="Button" parent="MultyplayerHud/Panel/VBoxContainer"]
+layout_mode = 2
+text = "Join Game"
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("2_j34bk")
+
+[node name="Player" parent="." instance=ExtResource("3_3j7of")]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://scenes/multiplayer_player.tscn")
+spawn_path = NodePath("../Players")
+spawn_limit = 4
+
+[node name="Players" type="Node2D" parent="."]
+
 [connection signal="body_entered" from="resetArea" to="resetArea" method="_on_body_entered"]
+[connection signal="pressed" from="MultyplayerHud/Panel/VBoxContainer/Host" to="GameManager" method="become_host"]
+[connection signal="pressed" from="MultyplayerHud/Panel/VBoxContainer/Join" to="GameManager" method="join_game"]

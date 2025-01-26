@@ -3,6 +3,8 @@ extends CharacterBody2D
 const BULLET = preload("res://scenes/bullet.tscn")
 @onready var hand = $Hand
 
+
+
 const SPEED = 300.0
 const JUMP_VELOCITY = -500.0
 const TERMINAL_VELOCITY = 600
@@ -12,6 +14,9 @@ const HAND_DISTANCE = 20
 const MAX_HEALTH = 100
 const RESPAWN_TIMER_MAX = 3
 
+var direction = 1
+var do_jump = false
+var _is_on_floor = true
 var health = MAX_HEALTH
 var alive = true
 var damage = 110
@@ -20,16 +25,26 @@ var bullet_bounces = 0
 var bullet_size = 1
 var respawn_timer = RESPAWN_TIMER_MAX
 
+@export var player_id := 1:
+	set(id):
+		player_id = id
+		$InputSyncronizer.set_multiplayer_authority(id)
+	
+@export var cursor_position : Vector2
+
+
 # DIVIDE THE LOGIC UP INTO FUNCTIONS AND ABSTRACT
 func _physics_process(delta):
+
 	if !alive:
 		respawn_timer -= delta
 		if respawn_timer < 0:
 			setAlive()
 	else:
-		movement(delta)
-		aim()
-		move_and_slide()
+		if multiplayer.is_server():
+			movement(delta)
+			aim()
+			move_and_slide()
 
 func shoot(bullet_velocity, bullet_start):
 	if Input.is_action_just_pressed("fire"):
@@ -50,20 +65,25 @@ func gravity(delta):
 			velocity.y += GRAVITY * delta
 
 func jump():
-	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	# Handle jump. do_jump is handled by an rpc from the syncronizer
+	if do_jump and is_on_floor():
+		do_jump = false
 		velocity.y = JUMP_VELOCITY
 
 func wallJump():
 	# Handle wall jump logic
-	if Input.is_action_just_pressed("jump") and is_on_wall():
+	if do_jump and is_on_wall():
+		do_jump = false
 		var collsion = get_slide_collision(0)
 		velocity.x = collsion.get_normal().x * SPEED * 2
 		velocity.y = JUMP_VELOCITY * .8
 	
+
 func move():
-	# Get the input direction and handle the movement/deceleration.
-	var direction = Input.get_axis("left", "right")
+	# Get the input direction from the snycronizer and handle the movement/deceleration.
+	direction = $InputSyncronizer.input_direction
+#	Update the syncronized is on floor variable with the current is on floor status
+	_is_on_floor = is_on_floor()
 	if direction:
 		velocity.x = move_toward(velocity.x, direction * SPEED, SPEED / 2)
 	else:
@@ -75,7 +95,7 @@ func terminalVelocity():
 		velocity.y = TERMINAL_VELOCITY
 
 func aim():
-	var cursor_position = get_global_mouse_position()
+	var cursor_position = get_local_mouse_position()
 	var player_position = global_position
 	# Calculate the direction vector from the player to the cursor
 	var direction_vector = (cursor_position - player_position).normalized()

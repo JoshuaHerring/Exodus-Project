@@ -18,7 +18,8 @@ func _on_body_entered(body):
 
 func checkForPlayer(body):
 	if body.is_in_group("player"):
-		get_tree().reload_current_scene()
+		body.position = Vector2(0, 0)
+		body.setDead()
 
 func checkForProjectile(body):
 	if body.is_in_group('projectile'):
