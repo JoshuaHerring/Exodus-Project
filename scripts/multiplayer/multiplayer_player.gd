@@ -95,7 +95,7 @@ func terminalVelocity():
 		velocity.y = TERMINAL_VELOCITY
 
 func aim():
-	var cursor_position = get_local_mouse_position()
+	var cursor_position = get_global_mouse_position()
 	var player_position = global_position
 	# Calculate the direction vector from the player to the cursor
 	var direction_vector = (cursor_position - player_position).normalized()

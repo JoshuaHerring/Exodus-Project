@@ -16,6 +16,9 @@ properties/2/replication_mode = 1
 properties/3/path = NodePath(".:do_jump")
 properties/3/spawn = true
 properties/3/replication_mode = 1
+properties/4/path = NodePath("Hand:position")
+properties/4/spawn = true
+properties/4/replication_mode = 1
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_a0x1x"]
 properties/0/path = NodePath("InputSyncronizer:input_direction")
