@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c7cn6kybht78s"]
+[gd_scene load_steps=7 format=3 uid="uid://c7cn6kybht78s"]
 
 [ext_resource type="Script" path="res://scripts/bullet.gd" id="1_8oru1"]
 
@@ -16,6 +16,20 @@ height = 4.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_558a0"]
 radius = 2.0
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_hf4ta"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("CollisionShape2D:scale")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("MeshInstance2D:scale")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("collisionDetector:scale")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+
 [node name="Bullet" type="RigidBody2D" groups=["projectile"]]
 mass = 0.001
 physics_material_override = SubResource("PhysicsMaterial_i551y")
@@ -31,6 +45,9 @@ mesh = SubResource("SphereMesh_xnkh6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="collisionDetector"]
 shape = SubResource("CircleShape2D_558a0")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_hf4ta")
 
 [connection signal="area_entered" from="collisionDetector" to="." method="_on_collision_detector_area_entered"]
 [connection signal="body_entered" from="collisionDetector" to="." method="_on_collision_detector_body_entered"]

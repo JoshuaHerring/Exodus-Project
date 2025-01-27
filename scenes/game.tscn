@@ -251,18 +251,18 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 color = Color(0.763146, 0.436291, 3.85046e-07, 1)
 
-[node name="resetArea" type="Area2D" parent="."]
+[node name="resetArea" type="Area2D" parent="foreGround"]
 script = ExtResource("1_x7kh7")
 
-[node name="bottom" type="CollisionShape2D" parent="resetArea"]
+[node name="bottom" type="CollisionShape2D" parent="foreGround/resetArea"]
 position = Vector2(8, 390)
 shape = SubResource("RectangleShape2D_edwtl")
 
-[node name="left" type="CollisionShape2D" parent="resetArea"]
+[node name="left" type="CollisionShape2D" parent="foreGround/resetArea"]
 position = Vector2(-734, -602)
 shape = SubResource("RectangleShape2D_0qu6x")
 
-[node name="right" type="CollisionShape2D" parent="resetArea"]
+[node name="right" type="CollisionShape2D" parent="foreGround/resetArea"]
 position = Vector2(745, -603)
 shape = SubResource("RectangleShape2D_0qu6x")
 
@@ -310,6 +310,12 @@ spawn_limit = 4
 
 [node name="Players" type="Node2D" parent="."]
 
-[connection signal="body_entered" from="resetArea" to="resetArea" method="_on_body_entered"]
+[node name="Bullets" type="Node2D" parent="Players"]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="Players"]
+_spawnable_scenes = PackedStringArray("res://scenes/bullet.tscn")
+spawn_path = NodePath("../Bullets")
+
+[connection signal="body_entered" from="foreGround/resetArea" to="foreGround/resetArea" method="_on_body_entered"]
 [connection signal="pressed" from="MultyplayerHud/Panel/VBoxContainer/Host" to="GameManager" method="become_host"]
 [connection signal="pressed" from="MultyplayerHud/Panel/VBoxContainer/Join" to="GameManager" method="join_game"]

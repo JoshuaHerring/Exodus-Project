@@ -22,7 +22,7 @@ var health = MAX_HEALTH
 var alive = true
 var damage = 110
 var bullet_speed = 500
-var bullet_bounces = 0
+var bullet_bounces = 2
 var bullet_size = 1
 var respawn_timer = RESPAWN_TIMER_MAX
 # The direction to shoot the bullet based off of the aim function
@@ -55,7 +55,7 @@ func shoot(bullet_velocity, bullet_start):
 		var bulleteInstance = BULLET.instantiate()
 		bulleteInstance.position = bullet_start
 		bulleteInstance.linear_velocity = bullet_velocity
-		get_parent().add_child(bulleteInstance)
+		get_parent().get_node("Bullets").add_child(bulleteInstance, true)
 		
 		bulleteInstance.modifyBulletVariables(damage, bullet_bounces, bullet_size)
 

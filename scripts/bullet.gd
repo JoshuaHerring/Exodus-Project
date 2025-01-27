@@ -40,4 +40,5 @@ func _on_collision_detector_body_entered(body):
 	if bounces > 0:
 		bounces -= 1
 	else:
-		queue_free()
+		if multiplayer.is_server():
+			queue_free()

@@ -27,15 +27,16 @@ func _process(delta):
 # rpc = remte procedure callw
 @rpc("call_local")
 func jump():
-	if multiplayer.is_server():
+	if multiplayer.is_server() and player.alive:
 		player.do_jump = true
 
 @rpc("call_local")
 func fire():
-	if multiplayer.is_server():
+	if multiplayer.is_server() and player.alive:
 		player.do_shoot = true
 		
 @rpc('call_local')
 func aim(target):
-	cursor_posiiton = target
-	player.aim(cursor_posiiton)
+	if player.alive:
+		cursor_posiiton = target
+		player.aim(cursor_posiiton)
