@@ -5,8 +5,8 @@ const BULLET = preload("res://scenes/bullet.tscn")
 
 
 
-const SPEED : int = 300.0
-const JUMP_VELOCITY : int = -500.0
+const SPEED : int = 300
+const JUMP_VELOCITY : int = -500
 const TERMINAL_VELOCITY : int = 600
 const GRAVITY : int = 2000
 const WALL_SLIDE_VELOCITY : int = 150
@@ -99,10 +99,10 @@ func terminalVelocity():
 	if velocity.y > TERMINAL_VELOCITY:
 		velocity.y = TERMINAL_VELOCITY
 
-func aim(cursor_position):
+func aim(aim_position):
 	var player_position = global_position
 	# Calculate the direction vector from the player to the cursor
-	var direction_vector = (cursor_position - player_position).normalized()
+	var direction_vector = (aim_position - player_position).normalized()
 	
 	# Use the hand to aim
 	hand.global_position = player_position + direction_vector * HAND_DISTANCE
