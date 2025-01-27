@@ -24,6 +24,7 @@ size = Vector2(1500, 20)
 size = Vector2(20, 2000)
 
 [node name="Game" type="Node2D"]
+script = ExtResource("2_j34bk")
 
 [node name="background" type="MeshInstance2D" parent="."]
 rotation = 1.5708
@@ -298,9 +299,6 @@ text = "Host Game"
 layout_mode = 2
 text = "Join Game"
 
-[node name="GameManager" type="Node" parent="."]
-script = ExtResource("2_j34bk")
-
 [node name="Player" parent="." instance=ExtResource("3_3j7of")]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
@@ -317,5 +315,5 @@ _spawnable_scenes = PackedStringArray("res://scenes/bullet.tscn")
 spawn_path = NodePath("../Bullets")
 
 [connection signal="body_entered" from="foreGround/resetArea" to="foreGround/resetArea" method="_on_body_entered"]
-[connection signal="pressed" from="MultyplayerHud/Panel/VBoxContainer/Host" to="GameManager" method="become_host"]
-[connection signal="pressed" from="MultyplayerHud/Panel/VBoxContainer/Join" to="GameManager" method="join_game"]
+[connection signal="pressed" from="MultyplayerHud/Panel/VBoxContainer/Host" to="." method="become_host"]
+[connection signal="pressed" from="MultyplayerHud/Panel/VBoxContainer/Join" to="." method="join_game"]

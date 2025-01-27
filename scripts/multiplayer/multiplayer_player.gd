@@ -5,30 +5,31 @@ const BULLET = preload("res://scenes/bullet.tscn")
 
 
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -500.0
-const TERMINAL_VELOCITY = 600
-const GRAVITY = 2000
-const WALL_SLIDE_VELOCITY = 150
-const HAND_DISTANCE = 20
-const MAX_HEALTH = 100
-const RESPAWN_TIMER_MAX = 3
+const SPEED : int = 300.0
+const JUMP_VELOCITY : int = -500.0
+const TERMINAL_VELOCITY : int = 600
+const GRAVITY : int = 2000
+const WALL_SLIDE_VELOCITY : int = 150
+const HAND_DISTANCE : float = 20
+const MAX_HEALTH : int = 100
+const RESPAWN_TIMER_MAX : float = 3
 
-var direction = 1
-var do_jump = false
-var do_shoot = false
-var _is_on_floor = true
-var health = MAX_HEALTH
-var alive = true
-var damage = 110
-var bullet_speed = 500
-var bullet_bounces = 2
-var bullet_size = 1
-var respawn_timer = RESPAWN_TIMER_MAX
+var direction : int = 1
+var do_jump : bool = false
+var do_shoot : bool = false
+var _is_on_floor : bool = true
+var health : int = MAX_HEALTH
+var alive : bool = true
+var damage : int = 110
+var bullet_speed : int = 500
+var bullet_bounces : int = 2
+# The size of the bullet needs to modify how far away the bullet spawns otherwise larger bullets hit the player upon shooting
+var bullet_size : float = 1
+var respawn_timer : float = RESPAWN_TIMER_MAX
 # The direction to shoot the bullet based off of the aim function
-var bullet_velocity
+var bullet_velocity : Vector2
 
-@export var player_id := 1:
+@export var player_id : int = 1:
 	set(id):
 		player_id = id
 		$InputSyncronizer.set_multiplayer_authority(id)
@@ -107,7 +108,7 @@ func aim(cursor_position):
 	hand.global_position = player_position + direction_vector * HAND_DISTANCE
 	
 	# Calculate velocity
-	var bullet_velocity = direction_vector * bullet_speed
+	bullet_velocity = direction_vector * bullet_speed
 	# Shoot the bullet with the above velocity
 	shoot(bullet_velocity, hand.global_position)
 

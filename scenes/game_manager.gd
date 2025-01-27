@@ -1,6 +1,6 @@
 extends Node
 
-@onready var multyplayer_hud = $"../MultyplayerHud"
+@onready var multyplayer_hud = $"MultyplayerHud"
 
 func become_host():
 	MultiplayerManager.become_host()
