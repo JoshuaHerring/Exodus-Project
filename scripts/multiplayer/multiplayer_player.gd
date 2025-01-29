@@ -24,7 +24,7 @@ var damage : int = 110
 var bullet_speed : int = 500
 var bullet_bounces : int = 2
 # The size of the bullet needs to modify how far away the bullet spawns otherwise larger bullets hit the player upon shooting
-var bullet_size : float = 1
+var bullet_size : float = 2
 var respawn_timer : float = RESPAWN_TIMER_MAX
 # The direction to shoot the bullet based off of the aim function
 var bullet_velocity : Vector2
