@@ -2,7 +2,10 @@ extends Node
 
 @onready var multyplayer_hud = $"MultyplayerHud"
 @onready var current_level = $CurrentLevel
-var level_folder_path = "res://scenes/levels"
+@onready var players = $Players
+const level_folder_path = "res://scenes/levels"
+
+var spawn_points : Array[Vector2] = []
 
 var files = []
 
@@ -21,6 +24,13 @@ func join_game():
 func switch_level_multiplayer(index : int):
 	var level_scene = load(level_folder_path + '/' + files[index])
 	var level_node = level_scene.instantiate()
+
+	spawn_points = level_node.spawn_points
+	var playerCount = players.get_child_count()
+	for i in range(playerCount):
+		players.get_child(i).position = spawn_points[i % playerCount]
+	
+	print(spawn_points)
 	
 	current_level.get_child(0).queue_free()
 

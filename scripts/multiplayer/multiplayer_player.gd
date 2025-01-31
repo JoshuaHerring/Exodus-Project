@@ -13,7 +13,7 @@ const GRAVITY : int = 2000
 const WALL_SLIDE_VELOCITY : int = 150
 const HAND_DISTANCE : float = 20
 const MAX_HEALTH : int = 100
-const RESPAWN_TIMER_MAX : float = 3
+const RESPAWN_TIMER_MAX : float = 1
 
 var direction : int = 1
 var do_jump : bool = false
@@ -57,7 +57,7 @@ func shoot(bullet_velocity, bullet_start):
 		var bulleteInstance = BULLET.instantiate()
 		bulleteInstance.position = bullet_start
 		bulleteInstance.linear_velocity = bullet_velocity
-		get_parent().get_node("Bullets").add_child(bulleteInstance, true)
+		get_parent().get_parent().get_node("Bullets").add_child(bulleteInstance, true)
 		
 		bulleteInstance.modifyBulletVariables(damage, bullet_bounces, bullet_size)
 
