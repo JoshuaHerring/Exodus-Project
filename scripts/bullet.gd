@@ -36,6 +36,8 @@ func _on_collision_detector_area_entered(area):
 func _on_collision_detector_body_entered(body):
 	if body.is_in_group('player'):
 		body.minusHealth(damage)
+		if multiplayer.is_server():
+			queue_free()
 		
 	if bounces > 0:
 		bounces -= 1
