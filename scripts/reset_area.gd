@@ -7,7 +7,6 @@ func _on_body_entered(body):
 
 func checkForPlayer(body):
 	if body.is_in_group("player"):
-		body.position = body.spawn_point
 		body.setDead()
 
 func checkForProjectile(body):
