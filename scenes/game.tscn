@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://ckp5aaa5o8pr5"]
+[gd_scene load_steps=8 format=3 uid="uid://ckp5aaa5o8pr5"]
 
 [ext_resource type="Script" path="res://scripts/reset_area.gd" id="1_x7kh7"]
 [ext_resource type="PackedScene" uid="uid://b8gj84b46wvco" path="res://scenes/mainMenu.tscn" id="2_64mhw"]
 [ext_resource type="Script" path="res://scenes/game_manager.gd" id="2_j34bk"]
 [ext_resource type="PackedScene" uid="uid://d3krxyejii3ux" path="res://scenes/player.tscn" id="3_3j7of"]
+[ext_resource type="PackedScene" uid="uid://i61ietw70s08" path="res://scenes/card_manager.tscn" id="5_jf42t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_edwtl"]
 size = Vector2(1500, 20)
@@ -17,6 +18,13 @@ script = ExtResource("2_j34bk")
 [node name="CurrentLevel" type="Node2D" parent="."]
 
 [node name="mainMenu" parent="CurrentLevel" instance=ExtResource("2_64mhw")]
+
+[node name="CardManager" parent="." instance=ExtResource("5_jf42t")]
+visible = false
+offset_left = -575.0
+offset_top = -323.0
+offset_right = -575.0
+offset_bottom = -323.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

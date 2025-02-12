@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://i61ietw70s08"]
+
+[ext_resource type="Script" path="res://scripts/card_manager.gd" id="1_xfk40"]
+
+[node name="CardManager" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xfk40")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="HBoxCards" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_top = 156.0
+offset_right = 951.0
+offset_bottom = 456.0
+theme_override_constants/separation = 225
+alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 12.0
+offset_right = 142.0
+offset_bottom = 49.0
+text = "Temp Button"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

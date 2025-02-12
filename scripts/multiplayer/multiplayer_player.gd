@@ -6,7 +6,6 @@ const BULLET = preload("res://scenes/bullet.tscn")
 
 
 
-const SPEED : int = 300
 const JUMP_VELOCITY : int = -500
 const TERMINAL_VELOCITY : int = 600
 const GRAVITY : int = 2000
@@ -15,6 +14,7 @@ const HAND_DISTANCE : float = 20
 const MAX_HEALTH : int = 100
 const RESPAWN_TIMER_MAX : float = 1
 
+var speed : int = 300
 var direction : int = 1
 var do_jump : bool = false
 var do_shoot : bool = false
@@ -23,7 +23,7 @@ var health : int = MAX_HEALTH
 var alive : bool = true
 var damage : int = 110
 var bullet_speed : int = 500
-var bullet_bounces : int = 2
+var bullet_bounces : int = 0
 # The size of the bullet needs to modify how far away the bullet spawns otherwise larger bullets hit the player upon shooting
 var bullet_size : float = 1
 var respawn_timer : float = RESPAWN_TIMER_MAX
@@ -66,7 +66,7 @@ func gravity(delta):
 	if not is_on_floor() and velocity.y <= TERMINAL_VELOCITY:
 		# Handle wall slide
 		if is_on_wall() and velocity.y >= 0:
-			velocity.y = move_toward(velocity.y, WALL_SLIDE_VELOCITY, SPEED)
+			velocity.y = move_toward(velocity.y, WALL_SLIDE_VELOCITY, speed)
 		else:
 			velocity.y += GRAVITY * delta
 
@@ -81,7 +81,7 @@ func wallJump():
 	if do_jump and is_on_wall():
 		do_jump = false
 		var collsion = get_slide_collision(0)
-		velocity.x = collsion.get_normal().x * SPEED * 2
+		velocity.x = collsion.get_normal().x * speed * 2
 		velocity.y = JUMP_VELOCITY * .8
 	
 
@@ -91,9 +91,9 @@ func move():
 #	Update the syncronized is on floor variable with the current is on floor status
 	_is_on_floor = is_on_floor()
 	if direction:
-		velocity.x = move_toward(velocity.x, direction * SPEED, SPEED / 2)
+		velocity.x = move_toward(velocity.x, direction * speed, speed / 2)
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, speed)
 
 func terminalVelocity():
 	# Prevent the player from exceding terminal velocity

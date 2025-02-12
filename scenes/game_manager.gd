@@ -29,9 +29,7 @@ func switch_level_multiplayer(index : int):
 	var playerCount = players.get_child_count()
 	for i in range(playerCount):
 		players.get_child(i).position = spawn_points[i % playerCount]
-	
-	print(spawn_points)
-	
+		
 	current_level.get_child(0).queue_free()
 
 	current_level.call_deferred("add_child", level_node)
@@ -39,7 +37,6 @@ func switch_level_multiplayer(index : int):
 func switch_level():
 	if not multiplayer.is_server():
 		return # Only the server picks the level
-	
 	
 	var index : int = randi() % files.size()
 	switch_level_multiplayer.rpc(index)
