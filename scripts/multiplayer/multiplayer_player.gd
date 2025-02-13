@@ -6,26 +6,28 @@ const BULLET = preload("res://scenes/bullet.tscn")
 
 
 
-const JUMP_VELOCITY : int = -500
 const TERMINAL_VELOCITY : int = 600
-const GRAVITY : int = 2000
 const WALL_SLIDE_VELOCITY : int = 150
 const HAND_DISTANCE : float = 20
-const MAX_HEALTH : int = 100
 const RESPAWN_TIMER_MAX : float = 1
 
+var jump_velocity : int = -500
+var gravity : int = 2000
+var max_health : int = 100
 var speed : int = 300
-var direction : int = 1
-var do_jump : bool = false
-var do_shoot : bool = false
-var _is_on_floor : bool = true
-var health : int = MAX_HEALTH
-var alive : bool = true
 var damage : int = 110
 var bullet_speed : int = 500
 var bullet_bounces : int = 0
 # The size of the bullet needs to modify how far away the bullet spawns otherwise larger bullets hit the player upon shooting
 var bullet_size : float = 1
+# Var's above this are stats that can be affect by cards
+
+var health : int = max_health
+var direction : int = 1
+var alive : bool = true
+var do_jump : bool = false
+var do_shoot : bool = false
+var _is_on_floor : bool = true
 var respawn_timer : float = RESPAWN_TIMER_MAX
 # The direction to shoot the bullet based off of the aim function
 var bullet_velocity : Vector2
@@ -60,20 +62,20 @@ func shoot(bullet_velocity, bullet_start):
 		
 		bulleteInstance.modifyBulletVariables(damage, bullet_bounces, bullet_size)
 
-func gravity(delta):
+func handleGravity(delta):
 	# Handle gravity
 	if not is_on_floor() and velocity.y <= TERMINAL_VELOCITY:
 		# Handle wall slide
 		if is_on_wall() and velocity.y >= 0:
 			velocity.y = move_toward(velocity.y, WALL_SLIDE_VELOCITY, speed)
 		else:
-			velocity.y += GRAVITY * delta
+			velocity.y += gravity * delta
 
 func jump():
 	# Handle jump. do_jump is handled by an rpc from the syncronizer
 	if do_jump and is_on_floor():
 		do_jump = false
-		velocity.y = JUMP_VELOCITY
+		velocity.y = jump_velocity
 
 func wallJump():
 	# Handle wall jump logic
@@ -81,7 +83,7 @@ func wallJump():
 		do_jump = false
 		var collsion = get_slide_collision(0)
 		velocity.x = collsion.get_normal().x * speed * 2
-		velocity.y = JUMP_VELOCITY * .8
+		velocity.y = jump_velocity * .8
 	
 
 func move():
@@ -131,20 +133,25 @@ func rpc_switch_level():
 
 func setAlive():
 	alive = true
-	health = MAX_HEALTH
+	health = max_health
 	respawn_timer = RESPAWN_TIMER_MAX
 
 func modifyPlayerStats(stats: Dictionary):
 	for stat_name in stats:
 		if stat_name in self:  # Check if the player has the stat as a property
+			print(player_id)
+			print('stat %s' %stat_name)
+			print('old stat %s' %get(stat_name))
 			set(stat_name, get(stat_name) + stats[stat_name])
+			print('new stat %s' %get(stat_name))
+			
 		else:
 			print('Stat name does not exist stat_name: %s' %stat_name)
 	
 	
 
 func movement(delta):
-	gravity(delta)
+	handleGravity(delta)
 	jump()
 	move()
 	wallJump()

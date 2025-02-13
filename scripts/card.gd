@@ -22,7 +22,5 @@ func _on_button_pressed():
 func request_button_click():
 	if multiplayer.is_server():
 		var sender_id = multiplayer.get_remote_sender_id() # Get the id of who triggered the rpc
-		print("Button clicked by player ID:", sender_id)
 		var player = players.get_node(str(sender_id))
 		player.modifyPlayerStats(card_data.stat_modifiers)
-		player.speed = 1000
