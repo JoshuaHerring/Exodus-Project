@@ -1,5 +1,6 @@
 extends Node
 
+@onready var card_manager = $CardManager
 @onready var multyplayer_hud = $"MultyplayerHud"
 @onready var current_level = $CurrentLevel
 @onready var players = $Players
@@ -57,3 +58,9 @@ func get_level_files():
 	dir.list_dir_end()
 		
 	return files
+
+func startCardManager():
+	card_manager.startCardManager()
+
+func endCardManager():
+	card_manager.endCardManager.rpc()

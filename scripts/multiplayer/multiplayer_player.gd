@@ -127,6 +127,7 @@ func setDead():
 @rpc("authority", "call_local")
 func rpc_switch_level():
 	gameManager.switch_level()
+	gameManager.startCardManager()
 
 
 func setAlive():

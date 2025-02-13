@@ -23,13 +23,3 @@ offset_right = 951.0
 offset_bottom = 456.0
 theme_override_constants/separation = 225
 alignment = 1
-
-[node name="Button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 33.0
-offset_top = 12.0
-offset_right = 142.0
-offset_bottom = 49.0
-text = "Temp Button"
-
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

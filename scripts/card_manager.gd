@@ -18,8 +18,13 @@ func load_cards_from_json(file_path):
 	card_pool = json.get_data()
 
 # Function that runs when the button is clicked
-func _on_button_pressed():
+func startCardManager():
+	show()
 	get_random_cards(4)
+
+@rpc("any_peer", "call_local")
+func endCardManager():
+	hide()
 
 # Only the server selects the cards and sends them to clients
 func get_random_cards(count: int):
