@@ -38,7 +38,6 @@ var bullet_velocity : Vector2
 @export var cursor_position : Vector2
 
 
-# DIVIDE THE LOGIC UP INTO FUNCTIONS AND ABSTRACT
 func _physics_process(delta):
 	cursor_position = get_global_mouse_position()
 	if !alive:
@@ -134,6 +133,13 @@ func setAlive():
 	alive = true
 	health = MAX_HEALTH
 	respawn_timer = RESPAWN_TIMER_MAX
+
+func modifyPlayerStats(stats: Dictionary):
+	for stat_name in stats:
+		if stat_name in self:  # Check if the player has the stat as a property
+			set(stat_name, get(stat_name) + stats[stat_name])
+		else:
+			print('Stat name does not exist stat_name: %s' %stat_name)
 	
 	
 

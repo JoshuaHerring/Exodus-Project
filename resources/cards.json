@@ -52,7 +52,7 @@
 	  "description": "A gauntlet infused with the strength of giants.",
 	  "stat_modifiers": {
 		"health": 15,
-		"damage": 20
+		"damage": 20,
 	  }
 	},
 	{
