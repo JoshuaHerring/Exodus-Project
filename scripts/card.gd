@@ -10,7 +10,8 @@ func set_card_data(data):
 	card_data = data
 	$Title.text = card_data.title
 	$Description.text = card_data.description
-
+	$Type.text = str(card_data.type)
+	
 func _on_button_pressed():
 	if !has_been_clicked:
 		has_been_clicked = true

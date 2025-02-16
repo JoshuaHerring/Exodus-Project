@@ -146,7 +146,7 @@ func modifyPlayerStats(stats: Dictionary):
 			print('new stat %s' %get(stat_name))
 			
 		else:
-			print('Stat name does not exist stat_name: %s' %stat_name)
+			print('Stat name does not exist on player object. stat_name: %s' %stat_name)
 	
 	
 

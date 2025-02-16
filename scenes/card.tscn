@@ -35,6 +35,16 @@ text = "Description"
 horizontal_alignment = 1
 autowrap_mode = 2
 
+[node name="Type" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_top = 270.0
+offset_right = 200.0
+offset_bottom = 293.0
+text = "Type"
+horizontal_alignment = 1
+autowrap_mode = 2
+
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
 offset_right = 201.0
