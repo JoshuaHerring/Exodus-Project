@@ -25,7 +25,6 @@ func load_cards_from_json(file_path):
 	
 	card_pool["reinforcements"] = data["reinforcements"]
 	card_pool["punishments"] = data["punishments"]
-	print(card_pool)
 
 # Function that runs when the button is clicked
 func startCardManager():

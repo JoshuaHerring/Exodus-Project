@@ -62,3 +62,11 @@ metadata/_edit_group_ = true
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Hand"]
 mesh = SubResource("SphereMesh_tpg06")
+
+[node name="NameLabel" type="Label" parent="."]
+offset_left = -30.0
+offset_top = -40.0
+offset_right = 30.0
+offset_bottom = -17.0
+text = "%%%"
+horizontal_alignment = 1

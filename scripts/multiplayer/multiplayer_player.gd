@@ -39,6 +39,8 @@ var bullet_velocity : Vector2
 	
 @export var cursor_position : Vector2
 
+func _ready():
+	$NameLabel.text = name.substr(0, 3)
 
 func _physics_process(delta):
 	cursor_position = get_global_mouse_position()
@@ -127,6 +129,7 @@ func setDead():
 			
 @rpc("authority", "call_local")
 func rpc_switch_level():
+	# Change this so that it calls one of these and whichever is called handles the other one.
 	gameManager.switch_level()
 	gameManager.startCardManager()
 
@@ -139,11 +142,10 @@ func setAlive():
 func modifyPlayerStats(stats: Dictionary):
 	for stat_name in stats:
 		if stat_name in self:  # Check if the player has the stat as a property
-			print(player_id)
-			print('stat %s' %stat_name)
-			print('old stat %s' %get(stat_name))
+			print('Player: %s' %player_id)
+			print('Old Stat: %s Stat Value: %s' % [stat_name, get(stat_name)])
 			set(stat_name, get(stat_name) + stats[stat_name])
-			print('new stat %s' %get(stat_name))
+			print("New Stat: %s Stat Value: %s" % [stat_name, get(stat_name)])
 			
 		else:
 			print('Stat name does not exist on player object. stat_name: %s' %stat_name)

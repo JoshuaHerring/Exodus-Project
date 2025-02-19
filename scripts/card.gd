@@ -23,5 +23,12 @@ func _on_button_pressed():
 func request_button_click():
 	if multiplayer.is_server():
 		var sender_id = multiplayer.get_remote_sender_id() # Get the id of who triggered the rpc
-		var player = players.get_node(str(sender_id))
-		player.modifyPlayerStats(card_data.stat_modifiers)
+		if card_data.type == 1:
+			var player = players.get_node(str(sender_id))
+			player.modifyPlayerStats(card_data.stat_modifiers)
+		else:
+			for child in players.get_children():
+				if child.name == str(sender_id):
+					pass
+				else:
+					child.modifyPlayerStats(card_data.stat_modifiers)
