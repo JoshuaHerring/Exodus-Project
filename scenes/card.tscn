@@ -5,9 +5,9 @@
 [node name="Card" type="Control"]
 layout_mode = 3
 anchor_right = 0.174
-anchor_bottom = 0.463
-offset_right = 0.551987
-offset_bottom = -0.0240173
+anchor_bottom = 0.412
+offset_right = 0.552002
+offset_bottom = 0.0239868
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2ffdx")
@@ -15,7 +15,7 @@ script = ExtResource("1_2ffdx")
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
 offset_right = 200.0
-offset_bottom = 300.0
+offset_bottom = 266.0
 color = Color(0, 0, 0, 1)
 
 [node name="Title" type="Label" parent="."]

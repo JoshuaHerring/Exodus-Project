@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://i61ietw70s08"]
+[gd_scene load_steps=4 format=3 uid="uid://i61ietw70s08"]
 
 [ext_resource type="Script" path="res://scripts/card_manager.gd" id="1_xfk40"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kx1f8"]
+font_size = 28
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kjwin"]
+font_size = 30
+font_color = Color(0, 0, 0, 1)
 
 [node name="CardManager" type="Control"]
 layout_mode = 3
@@ -18,16 +26,35 @@ offset_bottom = 648.0
 
 [node name="HBoxReinforcements" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_top = 19.0
+offset_top = 46.0
 offset_right = 951.0
-offset_bottom = 319.0
+offset_bottom = 313.0
 theme_override_constants/separation = 225
 alignment = 1
 
+[node name="ReinforcemnetLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 458.0
+offset_right = 672.0
+offset_bottom = 39.0
+text = "Reinforcements"
+label_settings = SubResource("LabelSettings_kx1f8")
+horizontal_alignment = 1
+
 [node name="HBoxPunishments" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_top = 325.0
+offset_top = 366.0
 offset_right = 951.0
-offset_bottom = 625.0
+offset_bottom = 634.0
 theme_override_constants/separation = 225
 alignment = 1
+
+[node name="PunishmentLabel" type="Label" parent="."]
+layout_mode = 2
+offset_left = 460.0
+offset_top = 319.0
+offset_right = 650.0
+offset_bottom = 361.0
+text = "Punishments"
+label_settings = SubResource("LabelSettings_kjwin")
+horizontal_alignment = 1

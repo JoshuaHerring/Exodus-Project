@@ -1,6 +1,7 @@
 extends Node
 
 const SERVER_PORT = 8080
+# Change this to ip for it to work across devices on same network?
 const SERVER_IP = "127.0.0.1"
 # REMEMBER THIS IS A GLOBAL SCRIPT THAT CAN BE ACCESSED FORM ANYWHERE BY TYPING IN THE NAME OF THE FILE THEN A PERIOD
 
