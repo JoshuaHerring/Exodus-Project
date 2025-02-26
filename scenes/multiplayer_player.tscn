@@ -80,6 +80,7 @@ text = "%%%"
 horizontal_alignment = 1
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+visible = false
 offset_left = -31.0
 offset_top = -34.0
 offset_right = 33.0
