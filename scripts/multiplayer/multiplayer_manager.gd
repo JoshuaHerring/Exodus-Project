@@ -2,7 +2,7 @@ extends Node
 
 const SERVER_PORT = 8080
 # Change this to ipv_4 for it to work across devices on same network?
-const SERVER_IP = "127.0.0.1"
+const SERVER_IP = "10.15.19.177"
 # REMEMBER THIS IS A GLOBAL SCRIPT THAT CAN BE ACCESSED FORM ANYWHERE BY TYPING IN THE NAME OF THE FILE THEN A PERIOD
 
 # Used to keep track of if the there is a host and if you are the host
