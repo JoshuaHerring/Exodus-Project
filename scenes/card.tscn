@@ -16,7 +16,7 @@ script = ExtResource("1_2ffdx")
 layout_mode = 0
 offset_right = 200.0
 offset_bottom = 266.0
-color = Color(0, 0, 0, 1)
+color = Color(0, 0.615686, 0, 1)
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 0
@@ -38,9 +38,9 @@ autowrap_mode = 2
 [node name="Type" type="Label" parent="."]
 visible = false
 layout_mode = 0
-offset_top = 270.0
+offset_top = 240.0
 offset_right = 200.0
-offset_bottom = 293.0
+offset_bottom = 263.0
 text = "Type"
 horizontal_alignment = 1
 autowrap_mode = 2
@@ -48,7 +48,7 @@ autowrap_mode = 2
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
 offset_right = 201.0
-offset_bottom = 299.0
+offset_bottom = 266.0
 flat = true
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

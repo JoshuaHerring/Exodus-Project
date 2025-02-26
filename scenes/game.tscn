@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://ckp5aaa5o8pr5"]
+[gd_scene load_steps=7 format=3 uid="uid://ckp5aaa5o8pr5"]
 
 [ext_resource type="Script" path="res://scripts/reset_area.gd" id="1_x7kh7"]
 [ext_resource type="PackedScene" uid="uid://b8gj84b46wvco" path="res://scenes/mainMenu.tscn" id="2_64mhw"]
 [ext_resource type="Script" path="res://scenes/game_manager.gd" id="2_j34bk"]
-[ext_resource type="PackedScene" uid="uid://d3krxyejii3ux" path="res://scenes/player.tscn" id="3_3j7of"]
 [ext_resource type="PackedScene" uid="uid://i61ietw70s08" path="res://scenes/card_manager.tscn" id="5_jf42t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_edwtl"]
@@ -59,8 +58,6 @@ text = "Host Game"
 [node name="Join" type="Button" parent="MultyplayerHud/Panel/VBoxContainer"]
 layout_mode = 2
 text = "Join Game"
-
-[node name="Player" parent="." instance=ExtResource("3_3j7of")]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://scenes/multiplayer_player.tscn")

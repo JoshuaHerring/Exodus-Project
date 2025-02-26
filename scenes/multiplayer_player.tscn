@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://l8xm0qaocywu"]
+[gd_scene load_steps=10 format=3 uid="uid://l8xm0qaocywu"]
 
 [ext_resource type="Script" path="res://scripts/multiplayer/multiplayer_player.gd" id="1_db2ai"]
 [ext_resource type="Script" path="res://scenes/input_syncronizer.gd" id="2_b6l5e"]
@@ -6,7 +6,7 @@
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_rnu7b"]
 properties/0/path = NodePath(".:player_id")
 properties/0/spawn = true
-properties/0/replication_mode = 1
+properties/0/replication_mode = 2
 properties/1/path = NodePath(".:position")
 properties/1/spawn = true
 properties/1/replication_mode = 1
@@ -41,6 +41,14 @@ height = 30.0
 radius = 3.0
 height = 6.0
 
+[sub_resource type="Gradient" id="Gradient_fs8rw"]
+interpolation_mode = 2
+colors = PackedColorArray(0.505882, 0, 0.0705882, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_u2ofa"]
+gradient = SubResource("Gradient_fs8rw")
+height = 12
+
 [node name="MultiplayerPlayer" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_db2ai")
 
@@ -65,8 +73,16 @@ mesh = SubResource("SphereMesh_tpg06")
 
 [node name="NameLabel" type="Label" parent="."]
 offset_left = -30.0
-offset_top = -40.0
+offset_top = -60.0
 offset_right = 30.0
-offset_bottom = -17.0
+offset_bottom = -37.0
 text = "%%%"
 horizontal_alignment = 1
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+offset_left = -31.0
+offset_top = -34.0
+offset_right = 33.0
+offset_bottom = -22.0
+value = 100.0
+texture_progress = SubResource("GradientTexture2D_u2ofa")

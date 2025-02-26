@@ -3,6 +3,7 @@ extends CharacterBody2D
 const BULLET = preload("res://scenes/bullet.tscn")
 @onready var gameManager = $"../.."
 @onready var hand = $Hand
+@onready var texture_progress_bar = $TextureProgressBar
 
 
 
@@ -15,7 +16,7 @@ var jump_velocity : int = -500
 var gravity : int = 2000
 var max_health : int = 100
 var speed : int = 300
-var damage : int = 110
+var damage : int = 10
 var bullet_speed : int = 500
 var bullet_bounces : int = 0
 # The size of the bullet needs to modify how far away the bullet spawns otherwise larger bullets hit the player upon shooting
@@ -116,9 +117,11 @@ func aim(aim_position):
 	# Shoot the bullet with the above velocity
 	shoot(bullet_velocity, hand.global_position)
 
+@rpc("any_peer", "call_local")
 func minusHealth(healthChange):
 	health -= healthChange
 	print(health)
+	texture_progress_bar.value = health
 	if health < 0 && alive:
 		setDead()
 
@@ -136,7 +139,8 @@ func rpc_switch_level():
 
 func setAlive():
 	alive = true
-	health = max_health
+	minusHealth(-max_health)
+	
 	respawn_timer = RESPAWN_TIMER_MAX
 
 func modifyPlayerStats(stats: Dictionary):

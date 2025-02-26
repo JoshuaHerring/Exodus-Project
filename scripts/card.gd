@@ -11,6 +11,10 @@ func set_card_data(data):
 	$Title.text = card_data.title
 	$Description.text = card_data.description
 	$Type.text = str(card_data.type)
+	if card_data.type == 1:
+		$ColorRect.color = Color("009d00")
+	else: 
+		$ColorRect.color = Color("92000d")
 	
 func _on_button_pressed():
 	if !has_been_clicked:
