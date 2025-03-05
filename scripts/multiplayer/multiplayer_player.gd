@@ -4,6 +4,7 @@ const BULLET = preload("res://scenes/bullet.tscn")
 @onready var gameManager = $"../.."
 @onready var hand = $Hand
 @onready var texture_progress_bar = $TextureProgressBar
+@onready var bullets_bar = $"Player UI/BulletsBar"
 
 
 
@@ -15,6 +16,7 @@ const RESPAWN_TIMER_MAX : float = 1
 var jump_velocity : int = -500
 var gravity : int = 2000
 var max_health : int = 100
+var max_bullets : int = 10
 var speed : int = 300
 var damage : int = 10
 var bullet_speed : int = 500
@@ -24,6 +26,10 @@ var bullet_size : float = 1
 # Var's above this are stats that can be affect by cards
 
 var health : int = max_health
+var bullets : int = max_bullets
+var reload_speed : float = 1
+var relaod_progress : float = reload_speed
+var reloading : bool = false
 var direction : int = 1
 var alive : bool = true
 var do_jump : bool = false
@@ -41,7 +47,12 @@ var bullet_velocity : Vector2
 @export var cursor_position : Vector2
 
 func _ready():
+	texture_progress_bar.value = health
+	texture_progress_bar.max_value = max_health
+	bullets_bar.value = bullets
+	bullets_bar.max_value = max_bullets
 	$NameLabel.text = name.substr(0, 3)
+	
 
 func _physics_process(delta):
 	cursor_position = get_global_mouse_position()
@@ -52,11 +63,22 @@ func _physics_process(delta):
 	else:
 		if multiplayer.is_server():
 			movement(delta)
-			#aim()
 			move_and_slide()
+			if reloading:
+				relaod_progress -= delta
+				if relaod_progress <= 0:
+					reloading = false
+					relaod_progress = reload_speed
+					bullets = max_bullets
+					bullets_bar.value = bullets
 
 func shoot(bullet_velocity, bullet_start):
-	if do_shoot:
+	if do_shoot and !reloading:
+		bullets -= 1
+		if bullets <= 0:
+			reloading = true
+		bullets_bar.value = bullets
+		
 		do_shoot = false
 		var bulleteInstance = BULLET.instantiate()
 		bulleteInstance.position = bullet_start
@@ -64,6 +86,7 @@ func shoot(bullet_velocity, bullet_start):
 		get_parent().get_parent().get_node("Bullets").add_child(bulleteInstance, true)
 		
 		bulleteInstance.modifyBulletVariables(damage, bullet_bounces, bullet_size)
+
 
 func handleGravity(delta):
 	# Handle gravity
