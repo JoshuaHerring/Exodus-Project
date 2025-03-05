@@ -16,7 +16,6 @@ func _ready():
 func _physics_process(delta):
 	input_direction = Input.get_axis("left", "right")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_just_pressed("jump"):
 		jump.rpc()

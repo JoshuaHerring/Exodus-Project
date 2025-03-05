@@ -30,6 +30,9 @@ var bullets : int = max_bullets
 var reload_speed : float = 1
 var relaod_progress : float = reload_speed
 var reloading : bool = false
+var fire_cooldown : float = .5
+var fire_cooldown_progress : float = fire_cooldown
+var fire_coolingdown : bool = false
 var direction : int = 1
 var alive : bool = true
 var do_jump : bool = false
@@ -64,6 +67,12 @@ func _physics_process(delta):
 		if multiplayer.is_server():
 			movement(delta)
 			move_and_slide()
+			if fire_coolingdown:
+				fire_cooldown_progress -= delta
+				if fire_cooldown_progress <= 0:
+					fire_coolingdown = false
+					fire_cooldown_progress = fire_cooldown
+				
 			if reloading:
 				relaod_progress -= delta
 				if relaod_progress <= 0:
@@ -73,8 +82,9 @@ func _physics_process(delta):
 					bullets_bar.value = bullets
 
 func shoot(bullet_velocity, bullet_start):
-	if do_shoot and !reloading:
+	if do_shoot and !reloading and !fire_coolingdown:
 		bullets -= 1
+		fire_coolingdown = true
 		if bullets <= 0:
 			reloading = true
 		bullets_bar.value = bullets
