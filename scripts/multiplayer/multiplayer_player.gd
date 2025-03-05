@@ -120,10 +120,10 @@ func aim(aim_position):
 @rpc("any_peer", "call_local")
 func minusHealth(healthChange):
 	health -= healthChange
-	print(health)
-	texture_progress_bar.value = health
-	if health < 0 && alive:
+	if health <= 0 && alive:
+		health = 0
 		setDead()
+	texture_progress_bar.value = health
 
 func setDead():
 	alive = false
