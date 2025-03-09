@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://l8xm0qaocywu"]
+[gd_scene load_steps=12 format=3 uid="uid://l8xm0qaocywu"]
 
 [ext_resource type="Script" path="res://scripts/multiplayer/multiplayer_player.gd" id="1_db2ai"]
 [ext_resource type="Script" path="res://scenes/input_syncronizer.gd" id="2_b6l5e"]
@@ -56,14 +56,6 @@ colors = PackedColorArray(0.505882, 0, 0.0705882, 1, 1, 0, 0, 1)
 gradient = SubResource("Gradient_fs8rw")
 height = 12
 
-[sub_resource type="Gradient" id="Gradient_0lpsu"]
-colors = PackedColorArray(0.384314, 0.392157, 0.368627, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_8vml3"]
-gradient = SubResource("Gradient_0lpsu")
-width = 128
-height = 24
-
 [node name="MultiplayerPlayer" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_db2ai")
 
@@ -102,13 +94,3 @@ offset_bottom = -22.0
 value = 40.0
 texture_under = SubResource("GradientTexture2D_x6dv3")
 texture_progress = SubResource("GradientTexture2D_u2ofa")
-
-[node name="Player UI" type="CanvasLayer" parent="."]
-
-[node name="BulletsBar" type="TextureProgressBar" parent="Player UI"]
-offset_left = 41.0
-offset_top = 19.0
-offset_right = 169.0
-offset_bottom = 43.0
-value = 50.0
-texture_progress = SubResource("GradientTexture2D_8vml3")

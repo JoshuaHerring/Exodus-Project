@@ -4,7 +4,6 @@ const BULLET = preload("res://scenes/bullet.tscn")
 @onready var gameManager = $"../.."
 @onready var hand = $Hand
 @onready var texture_progress_bar = $TextureProgressBar
-@onready var bullets_bar = $"Player UI/BulletsBar"
 
 
 
@@ -52,8 +51,6 @@ var bullet_velocity : Vector2
 func _ready():
 	texture_progress_bar.value = health
 	texture_progress_bar.max_value = max_health
-	bullets_bar.value = bullets
-	bullets_bar.max_value = max_bullets
 	$NameLabel.text = name.substr(0, 3)
 	
 
@@ -79,7 +76,6 @@ func _physics_process(delta):
 					reloading = false
 					relaod_progress = reload_speed
 					bullets = max_bullets
-					bullets_bar.value = bullets
 
 func shoot(bullet_velocity, bullet_start):
 	if do_shoot and !reloading and !fire_coolingdown:
@@ -87,7 +83,6 @@ func shoot(bullet_velocity, bullet_start):
 		fire_coolingdown = true
 		if bullets <= 0:
 			reloading = true
-		bullets_bar.value = bullets
 		
 		do_shoot = false
 		var bulleteInstance = BULLET.instantiate()
