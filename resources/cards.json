@@ -2,7 +2,7 @@
   "reinforcements": [
 	{
 	  "title": "Blazing Blade",
-	  "description": "A sword engulfed in flames",
+	  "description": "max_health +5 | damage +15",
 	  "type": 1,
 	  "stat_modifiers": {
 		"max_health": 5,
@@ -11,7 +11,7 @@
 	},
 	{
 	  "title": "Guardian's Shield",
-	  "description": "A sturdy shield",
+	  "description": "max_health +20 | damage +0",
 	  "type": 1,
 	  "stat_modifiers": {
 		"max_health": 20,
@@ -20,7 +20,7 @@
 	},
 	{
 	  "title": "Vampiric Dagger",
-	  "description": "A cursed dagger",
+	  "description": "max_health +10 | damage +10",
 	  "type": 1,
 	  "stat_modifiers": {
 		"max_health": 10,
@@ -29,7 +29,7 @@
 	},
 	{
 	  "title": "Arcane Tome",
-	  "description": "A forbidden book",
+	  "description": "max_health -5 | damage +25",
 	  "type": 1,
 	  "stat_modifiers": {
 		"max_health": -5,
@@ -38,7 +38,7 @@
 	},
 	{
 	  "title": "Berserker's Charm",
-	  "description": "Glass cannon",
+	  "description": "max_health -10 | damage +30",
 	  "type": 1,
 	  "stat_modifiers": {
 		"max_health": -10,
@@ -49,7 +49,7 @@
   "punishments": [
 	{
 	  "title": "Cursed Gauntlet",
-	  "description": "A heavy gauntlet",
+	  "description": "max_health -10 | damage -5",
 	  "type": 2,
 	  "stat_modifiers": {
 		"max_health": -10,
@@ -58,7 +58,7 @@
 	},
 	{
 	  "title": "Hexed Amulet",
-	  "description": "A cursed amulet",
+	  "description": "max_health -15 | damage -10",
 	  "type": 2,
 	  "stat_modifiers": {
 		"max_health": -15,
@@ -67,7 +67,7 @@
 	},
 	{
 	  "title": "Doomed Pact",
-	  "description": "A dark contract",
+	  "description": "max_health -25 | damage +5",
 	  "type": 2,
 	  "stat_modifiers": {
 		"max_health": -25,
@@ -76,7 +76,7 @@
 	},
 	{
 	  "title": "Frozen Shackles",
-	  "description": "Cold iron binds your limbs",
+	  "description": "max_health -5 | damage -15",
 	  "type": 2,
 	  "stat_modifiers": {
 		"max_health": -5,
@@ -85,7 +85,7 @@
 	},
 	{
 	  "title": "Blindfold of Misfortune",
-	  "description": "Obscures your vision",
+	  "description": "max_health +0 | damage -20",
 	  "type": 2,
 	  "stat_modifiers": {
 		"max_health": 0,
