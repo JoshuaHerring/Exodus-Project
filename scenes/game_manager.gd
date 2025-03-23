@@ -4,13 +4,21 @@ extends Node
 @onready var multyplayer_hud = $"MultyplayerHud"
 @onready var current_level = $CurrentLevel
 @onready var players = $Players
+@onready var http_request = $HTTPRequest
+
 const level_folder_path = "res://scenes/levels"
+const api_url = 'https://exodus-project-backend.onrender.com'
 
 var spawn_points : Array[Vector2] = []
+var cardManagerOpen = false
 
 var files = []
+var roundVictorId = 0
+var lastLevelId = 0
 
 func _ready():
+# You can make the request anywhere and the response is handled in the on request complete signal function below
+	http_request.request(api_url + '/choice')
 	get_level_files()
 
 func become_host():
@@ -23,6 +31,7 @@ func join_game():
 
 @rpc("authority", "call_local")
 func switch_level_multiplayer(index : int):
+	startCardManager()
 	var level_scene = load(level_folder_path + '/' + files[index])
 	var level_node = level_scene.instantiate()
 
@@ -38,7 +47,17 @@ func switch_level_multiplayer(index : int):
 func switch_level():
 	if not multiplayer.is_server():
 		return # Only the server picks the level
-	
+
+	# Filter out dead players form all players
+	var living_players = players.get_children().filter(func(player): return player.alive)
+
+	# If there is more than 1 living player return; not switching the level
+	if living_players.size() > 1:
+		return
+		
+	roundVictorId = living_players[0].player_id
+	lastLevelId = 	current_level.get_child(0).id
+
 	var index : int = randi() % files.size()
 	switch_level_multiplayer.rpc(index)
 	
@@ -60,7 +79,16 @@ func get_level_files():
 	return files
 
 func startCardManager():
+	cardManagerOpen = true
 	card_manager.startCardManager()
 
 func endCardManager():
+	cardManagerOpen = false
 	card_manager.endCardManager.rpc()
+
+
+
+
+func _on_request_request_completed(result, response_code, headers, body):
+#	Convert the encoded body to string from utf8 then parse the string to json data
+	print(JSON.parse_string(body.get_string_from_utf8()))

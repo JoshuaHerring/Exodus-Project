@@ -91,6 +91,9 @@ shape = SubResource("RectangleShape2D_0qu6x")
 position = Vector2(745, -603)
 shape = SubResource("RectangleShape2D_0qu6x")
 
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
 [connection signal="pressed" from="MultyplayerHud/Panel/VBoxContainer/Host" to="." method="become_host"]
 [connection signal="pressed" from="MultyplayerHud/Panel/VBoxContainer/Join" to="." method="join_game"]
 [connection signal="body_entered" from="resetArea" to="resetArea" method="_on_body_entered"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_request_request_completed"]

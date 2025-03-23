@@ -160,10 +160,7 @@ func setDead():
 			
 @rpc("authority", "call_local")
 func rpc_switch_level():
-	# Change this so that it calls one of these and whichever is called handles the other one.
 	gameManager.switch_level()
-	gameManager.startCardManager()
-
 
 func setAlive():
 	alive = true
@@ -174,10 +171,10 @@ func setAlive():
 func modifyPlayerStats(stats: Dictionary):
 	for stat_name in stats:
 		if stat_name in self:  # Check if the player has the stat as a property
-			print('Player: %s' %player_id)
-			print('Old Stat: %s Stat Value: %s' % [stat_name, get(stat_name)])
+			#print('Player: %s' %player_id)
+			#print('Old Stat: %s Stat Value: %s' % [stat_name, get(stat_name)])
 			set(stat_name, get(stat_name) + stats[stat_name])
-			print("New Stat: %s Stat Value: %s" % [stat_name, get(stat_name)])
+			#print("New Stat: %s Stat Value: %s" % [stat_name, get(stat_name)])
 			
 		else:
 			print('Stat name does not exist on player object. stat_name: %s' %stat_name)

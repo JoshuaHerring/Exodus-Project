@@ -58,3 +58,5 @@ offset_bottom = 361.0
 text = "Punishments"
 label_settings = SubResource("LabelSettings_kjwin")
 horizontal_alignment = 1
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]

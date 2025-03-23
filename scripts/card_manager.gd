@@ -1,8 +1,13 @@
 extends Control
 
 const CARD = preload("res://scenes/card.tscn")
+const api_url = 'https://exodus-project-backend.onrender.com'
+const headers = ["Content-Type: application/json"]
+
+
 @onready var h_box_reinforcements = $HBoxReinforcements
 @onready var h_box_punishments = $HBoxPunishments
+@onready var http_request = $HTTPRequest
 
 #var card_pool = []
 var card_pool = {
@@ -83,3 +88,17 @@ func display_selected_cards(selected_cards):
 		var card = CARD.instantiate()
 		card.set_card_data(cardData)
 		h_box_punishments.add_child(card)
+
+
+func sendChoiceData(level_id: int, choice_type: int, player_id: int, score: Dictionary):
+	var data_dict = {
+		"level_id": level_id,
+		"choice_type": choice_type,
+		"player_id": player_id,
+		"score": score 
+	}
+
+	var data = JSON.stringify(data_dict) 
+	print('here')
+	http_request.request(api_url + "/choice", headers, HTTPClient.METHOD_POST, data)
+	print('there')

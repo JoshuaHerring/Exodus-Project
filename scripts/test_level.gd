@@ -1,6 +1,7 @@
 extends Node2D
 
 const spawn_points : Array[Vector2] = [Vector2(250, 100), Vector2(-350, -400)]
+var id: int = 1  
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
