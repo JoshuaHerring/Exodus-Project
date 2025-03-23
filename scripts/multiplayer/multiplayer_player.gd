@@ -4,6 +4,7 @@ const BULLET = preload("res://scenes/bullet.tscn")
 @onready var gameManager = $"../.."
 @onready var hand = $Hand
 @onready var texture_progress_bar = $TextureProgressBar
+@onready var bullet_audio = $BulletAudio
 
 
 
@@ -79,6 +80,7 @@ func _physics_process(delta):
 
 func shoot(bullet_velocity, bullet_start):
 	if do_shoot and !reloading and !fire_coolingdown:
+		bullet_audio.play()
 		bullets -= 1
 		fire_coolingdown = true
 		if bullets <= 0:

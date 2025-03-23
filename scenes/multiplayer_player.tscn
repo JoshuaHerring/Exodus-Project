@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://l8xm0qaocywu"]
+[gd_scene load_steps=13 format=3 uid="uid://l8xm0qaocywu"]
 
 [ext_resource type="Script" path="res://scripts/multiplayer/multiplayer_player.gd" id="1_db2ai"]
 [ext_resource type="Script" path="res://scenes/input_syncronizer.gd" id="2_b6l5e"]
+[ext_resource type="AudioStream" uid="uid://ktupayr2fgrk" path="res://assets/bulletSound.wav" id="3_umemq"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_rnu7b"]
 properties/0/path = NodePath(".:player_id")
@@ -94,3 +95,6 @@ offset_bottom = -22.0
 value = 40.0
 texture_under = SubResource("GradientTexture2D_x6dv3")
 texture_progress = SubResource("GradientTexture2D_u2ofa")
+
+[node name="BulletAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_umemq")
