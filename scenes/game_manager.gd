@@ -82,16 +82,29 @@ func get_level_files():
 	return files
 
 func startCardManager():
+	roundEndPlayers.rpc()
 	cardManagerOpen = true
 	card_manager.startCardManager()
+
 
 func endCardManager():
 	cardManagerOpen = false
 	card_manager.endCardManager.rpc()
+	roundStartPlayers.rpc()
+
+@rpc("authority", 'call_local')
+func roundEndPlayers():
+	for player in players.get_children():
+		player.roundEnd()
 
 
+@rpc("authority", 'call_local')
+func roundStartPlayers():
+	for player in players.get_children():
+		player.roundStart()
 
 
 func _on_request_request_completed(result, response_code, headers, body):
+	pass
 #	Convert the encoded body to string from utf8 then parse the string to json data
-	print(JSON.parse_string(body.get_string_from_utf8()))
+	#print(JSON.parse_string(body.get_string_from_utf8()))

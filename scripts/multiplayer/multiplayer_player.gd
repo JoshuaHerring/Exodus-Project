@@ -11,7 +11,7 @@ const BULLET = preload("res://scenes/bullet.tscn")
 const TERMINAL_VELOCITY : int = 600
 const WALL_SLIDE_VELOCITY : int = 150
 const HAND_DISTANCE : float = 20
-const RESPAWN_TIMER_MAX : float = 1
+#const RESPAWN_TIMER_MAX : float = 1
 
 var jump_velocity : int = -500
 var gravity : int = 2000
@@ -38,9 +38,10 @@ var alive : bool = true
 var do_jump : bool = false
 var do_shoot : bool = false
 var _is_on_floor : bool = true
-var respawn_timer : float = RESPAWN_TIMER_MAX
+#var respawn_timer : float = RESPAWN_TIMER_MAX
 # The direction to shoot the bullet based off of the aim function
 var bullet_velocity : Vector2
+var freeze: bool = false
 
 @export var player_id : int = 1:
 	set(id):
@@ -56,12 +57,15 @@ func _ready():
 	
 
 func _physics_process(delta):
+	if freeze:
+		return
 	cursor_position = get_global_mouse_position()
-	if !alive:
-		respawn_timer -= delta
-		if respawn_timer < 0:
-			setAlive()
-	else:
+	#if !alive:
+		#respawn_timer -= delta
+		#if respawn_timer < 0:
+			#setAlive()
+	#else:
+	if alive:
 		if multiplayer.is_server():
 			movement(delta)
 			move_and_slide()
@@ -153,6 +157,11 @@ func minusHealth(healthChange):
 	if health <= 0 && alive:
 		health = 0
 		setDead()
+	
+	#if healthChange * -1 == max_health:
+		#print('only once pls')
+		#health = max_health
+	#texture_progress_bar.max_value = max_health
 	texture_progress_bar.value = health
 
 func setDead():
@@ -166,22 +175,31 @@ func rpc_switch_level():
 
 func setAlive():
 	alive = true
-	minusHealth(-max_health)
+	minusHealth.rpc(-max_health)
 	
-	respawn_timer = RESPAWN_TIMER_MAX
+	#respawn_timer = RESPAWN_TIMER_MAX
 
 func modifyPlayerStats(stats: Dictionary):
 	for stat_name in stats:
 		if stat_name in self:  # Check if the player has the stat as a property
-			#print('Player: %s' %player_id)
-			#print('Old Stat: %s Stat Value: %s' % [stat_name, get(stat_name)])
+
 			set(stat_name, get(stat_name) + stats[stat_name])
-			#print("New Stat: %s Stat Value: %s" % [stat_name, get(stat_name)])
+			if stat_name == 'max_health':
+				texture_progress_bar.max_value = max_health
 			
 		else:
 			print('Stat name does not exist on player object. stat_name: %s' %stat_name)
 	
+func roundEnd():
+	freeze = true
+	hide()
 	
+func roundStart():
+	minusHealth.rpc(-max_health)
+	show()
+	freeze = false
+	alive = true
+
 
 func movement(delta):
 	handleGravity(delta)
