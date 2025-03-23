@@ -5,6 +5,7 @@ extends Node
 @onready var current_level = $CurrentLevel
 @onready var players = $Players
 @onready var http_request = $HTTPRequest
+@onready var background_music = $BackgroundMusic
 
 const level_folder_path = "res://scenes/levels"
 const api_url = 'https://exodus-project-backend.onrender.com'
@@ -45,6 +46,8 @@ func switch_level_multiplayer(index : int):
 	current_level.call_deferred("add_child", level_node)
 	
 func switch_level():
+	if !background_music.playing:
+		background_music.play()
 	if not multiplayer.is_server():
 		return # Only the server picks the level
 

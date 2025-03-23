@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://ckp5aaa5o8pr5"]
+[gd_scene load_steps=8 format=3 uid="uid://ckp5aaa5o8pr5"]
 
 [ext_resource type="Script" path="res://scripts/reset_area.gd" id="1_x7kh7"]
 [ext_resource type="PackedScene" uid="uid://b8gj84b46wvco" path="res://scenes/mainMenu.tscn" id="2_64mhw"]
 [ext_resource type="Script" path="res://scenes/game_manager.gd" id="2_j34bk"]
+[ext_resource type="AudioStream" uid="uid://bfxb0dj1dxkg4" path="res://assets/Arcade.ogg" id="5_4vygv"]
 [ext_resource type="PackedScene" uid="uid://i61ietw70s08" path="res://scenes/card_manager.tscn" id="5_jf42t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_edwtl"]
@@ -92,6 +93,10 @@ position = Vector2(745, -603)
 shape = SubResource("RectangleShape2D_0qu6x")
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_4vygv")
+volume_db = -20.0
 
 [connection signal="pressed" from="MultyplayerHud/Panel/VBoxContainer/Host" to="." method="become_host"]
 [connection signal="pressed" from="MultyplayerHud/Panel/VBoxContainer/Join" to="." method="join_game"]
