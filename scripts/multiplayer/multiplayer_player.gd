@@ -80,7 +80,7 @@ func _physics_process(delta):
 
 func shoot(bullet_velocity, bullet_start):
 	if do_shoot and !reloading and !fire_coolingdown:
-		bulletSound.rpc()
+		bullet_audio.play()
 		bullets -= 1
 		fire_coolingdown = true
 		if bullets <= 0:
@@ -154,10 +154,6 @@ func minusHealth(healthChange):
 		health = 0
 		setDead()
 	texture_progress_bar.value = health
-
-@rpc("any_peer", "call_local")
-func bulletSound():
-	bullet_audio.play()
 
 func setDead():
 	alive = false
