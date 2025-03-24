@@ -82,7 +82,8 @@ func get_level_files():
 	return files
 
 func startCardManager():
-	roundEndPlayers.rpc()
+	if multiplayer.is_server():
+		roundEndPlayers.rpc()
 	cardManagerOpen = true
 	card_manager.startCardManager()
 

@@ -31,7 +31,7 @@ func jump():
 
 @rpc("call_local")
 func fire():
-	if multiplayer.is_server() and player.alive:
+	if multiplayer.is_server() and player.alive and !player.fire_coolingdown:
 		player.do_shoot = true
 		
 @rpc('call_local')
