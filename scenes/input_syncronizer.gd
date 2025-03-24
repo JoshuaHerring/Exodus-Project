@@ -19,7 +19,7 @@ func _physics_process(delta):
 func _process(delta):
 	if Input.is_action_just_pressed("jump"):
 		jump.rpc()
-	if Input.is_action_just_pressed("fire") and !player.reloading:
+	if Input.is_action_just_pressed("fire"):
 		fire.rpc()
 	aim.rpc(player.cursor_position)
 		

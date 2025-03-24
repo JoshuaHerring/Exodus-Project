@@ -16,7 +16,7 @@ const HAND_DISTANCE : float = 20
 var jump_velocity : int = -500
 var gravity : int = 2000
 var max_health : int = 100
-var max_bullets : int = 10
+#var max_bullets : int = 10
 var speed : int = 300
 var damage : int = 10
 var bullet_speed : int = 500
@@ -26,10 +26,10 @@ var bullet_size : float = 1
 # Var's above this are stats that can be affect by cards
 
 var health : int = max_health
-var bullets : int = max_bullets
-var reload_speed : float = 1
-var relaod_progress : float = reload_speed
-var reloading : bool = false
+#var bullets : int = max_bullets
+#var reload_speed : float = 1
+#var relaod_progress : float = reload_speed
+#var reloading : bool = false
 var fire_cooldown : float = .5
 var fire_cooldown_progress : float = fire_cooldown
 var fire_coolingdown : bool = false
@@ -75,20 +75,20 @@ func _physics_process(delta):
 					fire_coolingdown = false
 					fire_cooldown_progress = fire_cooldown
 				
-			if reloading:
-				relaod_progress -= delta
-				if relaod_progress <= 0:
-					reloading = false
-					relaod_progress = reload_speed
-					bullets = max_bullets
+			#if reloading:
+				#relaod_progress -= delta
+				#if relaod_progress <= 0:
+					#reloading = false
+					#relaod_progress = reload_speed
+					#bullets = max_bullets
 
 func shoot(bullet_velocity, bullet_start):
-	if do_shoot and !reloading and !fire_coolingdown:
+	if do_shoot and !fire_coolingdown:
 		bullet_audio.play()
-		bullets -= 1
+		#bullets -= 1
 		fire_coolingdown = true
-		if bullets <= 0:
-			reloading = true
+		#if bullets <= 0:
+			#reloading = true
 		
 		do_shoot = false
 		var bulleteInstance = BULLET.instantiate()
