@@ -27,7 +27,7 @@ func modifyBulletVariables(addDamage = 0, addBounces = 0, addSize = 0):
 	mesh_instance_2d.scale += Vector2(addSize, addSize)
 	collision_detector.scale += Vector2(addSize, addSize)
 
-func _on_collision_detector_area_entered(area):
+func _on_collision_detector_area_entered(_area):
 	if bounces > 0:
 		bounces -= 1
 	else:

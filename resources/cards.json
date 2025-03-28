@@ -1,96 +1,187 @@
 {
-  "reinforcements": [
-	{
-	  "title": "Blazing Blade",
-	  "description": "max_health +5 | damage +15",
-	  "type": 1,
-	  "stat_modifiers": {
-		"max_health": 5,
-		"damage": 15
+	"reinforcements": [
+	  {
+		"title": "Wings of the Phoenix",
+		"description": "jump_velocity +80 | gravity -280",
+		"type": 1,
+		"stat_modifiers": {
+		  "jump_velocity": 80,
+		  "gravity": -280
+		}
+	  },
+	  {
+		"title": "Titan's Embrace",
+		"description": "max_health +20 | speed -48",
+		"type": 1,
+		"stat_modifiers": {
+		  "max_health": 20,
+		  "speed": -48
+		}
+	  },
+	  {
+		"title": "Rapid Loader",
+		"description": "fire_cooldown -0.08 | bullet_speed +80",
+		"type": 1,
+		"stat_modifiers": {
+		  "fire_cooldown": -0.08,
+		  "bullet_speed": 80
+		}
+	  },
+	  {
+		"title": "Blazing Speed",
+		"description": "speed +48 | bullet_speed +80",
+		"type": 1,
+		"stat_modifiers": {
+		  "speed": 48,
+		  "bullet_speed": 80
+		}
+	  },
+	  {
+		"title": "Iron Skin",
+		"description": "max_health +20 | gravity +280",
+		"type": 1,
+		"stat_modifiers": {
+		  "max_health": 20,
+		  "gravity": 280
+		}
+	  },
+	  {
+		"title": "Echo Shot",
+		"description": "bullet_bounces +4 | bullet_speed +80",
+		"type": 1,
+		"stat_modifiers": {
+		  "bullet_bounces": 4,
+		  "bullet_speed": 80
+		}
+	  },
+	  {
+		"title": "Reckless Fury",
+		"description": "damage +2 | fire_cooldown +0.08",
+		"type": 1,
+		"stat_modifiers": {
+		  "damage": 2,
+		  "fire_cooldown": 0.08
+		}
+	  },
+	  {
+		"title": "Bulletstorm",
+		"description": "fire_cooldown -0.08 | speed +48",
+		"type": 1,
+		"stat_modifiers": {
+		  "fire_cooldown": -0.08,
+		  "speed": 48
+		}
+	  },
+	  {
+		"title": "Levitating Amulet",
+		"description": "gravity -280 | jump_velocity +80",
+		"type": 1,
+		"stat_modifiers": {
+		  "gravity": -280,
+		  "jump_velocity": 80
+		}
+	  },
+	  {
+		"title": "Sharpened Edge",
+		"description": "damage +2 | speed +48",
+		"type": 1,
+		"stat_modifiers": {
+		  "damage": 2,
+		  "speed": 48
+		}
 	  }
-	},
-	{
-	  "title": "Guardian's Shield",
-	  "description": "max_health +20 | damage +0",
-	  "type": 1,
-	  "stat_modifiers": {
-		"max_health": 20,
-		"damage": 0
+	],
+	"punishments": [
+	  {
+		"title": "Stone Boots",
+		"description": "jump_velocity -80 | gravity +280",
+		"type": 2,
+		"stat_modifiers": {
+		  "jump_velocity": -80,
+		  "gravity": 280
+		}
+	  },
+	  {
+		"title": "Cursed Armor",
+		"description": "max_health -20 | speed -48",
+		"type": 2,
+		"stat_modifiers": {
+		  "max_health": -20,
+		  "speed": -48
+		}
+	  },
+	  {
+		"title": "Sluggish Reflexes",
+		"description": "fire_cooldown +0.08 | speed -48",
+		"type": 2,
+		"stat_modifiers": {
+		  "fire_cooldown": 0.08,
+		  "speed": -48
+		}
+	  },
+	  {
+		"title": "Rusty Barrel",
+		"description": "bullet_speed -80 | damage -2",
+		"type": 2,
+		"stat_modifiers": {
+		  "bullet_speed": -80,
+		  "damage": -2
+		}
+	  },
+	  {
+		"title": "Shackles of Despair",
+		"description": "speed -48 | gravity +280",
+		"type": 2,
+		"stat_modifiers": {
+		  "speed": -48,
+		  "gravity": 280
+		}
+	  },
+	  {
+		"title": "Twisted Ammunition",
+		"description": "bullet_bounces -2 | bullet_speed -80",
+		"type": 2,
+		"stat_modifiers": {
+		  "bullet_bounces": -2,
+		  "bullet_speed": -80
+		}
+	  },
+	  {
+		"title": "Heavy Burden",
+		"description": "jump_velocity -80 | gravity +280",
+		"type": 2,
+		"stat_modifiers": {
+		  "jump_velocity": -80,
+		  "gravity": 280
+		}
+	  },
+	  {
+		"title": "Curse of Hesitation",
+		"description": "fire_cooldown +0.08 | speed -48",
+		"type": 2,
+		"stat_modifiers": {
+		  "fire_cooldown": 0.08,
+		  "speed": -48
+		}
+	  },
+	  {
+		"title": "Waning Strength",
+		"description": "damage -2 | max_health -20",
+		"type": 2,
+		"stat_modifiers": {
+		  "damage": -2,
+		  "max_health": -20
+		}
+	  },
+	  {
+		"title": "Drained Essence",
+		"description": "max_health -20 | speed -48",
+		"type": 2,
+		"stat_modifiers": {
+		  "max_health": -20,
+		  "speed": -48
+		}
 	  }
-	},
-	{
-	  "title": "Vampiric Dagger",
-	  "description": "max_health +10 | damage +10",
-	  "type": 1,
-	  "stat_modifiers": {
-		"max_health": 10,
-		"damage": 10
-	  }
-	},
-	{
-	  "title": "Arcane Tome",
-	  "description": "max_health -5 | damage +25",
-	  "type": 1,
-	  "stat_modifiers": {
-		"max_health": -5,
-		"damage": 25
-	  }
-	},
-	{
-	  "title": "Berserker's Charm",
-	  "description": "max_health -10 | damage +30",
-	  "type": 1,
-	  "stat_modifiers": {
-		"max_health": -10,
-		"damage": 30
-	  }
-	}
-  ],
-  "punishments": [
-	{
-	  "title": "Cursed Gauntlet",
-	  "description": "max_health -10 | damage -5",
-	  "type": 2,
-	  "stat_modifiers": {
-		"max_health": -10,
-		"damage": -5
-	  }
-	},
-	{
-	  "title": "Hexed Amulet",
-	  "description": "max_health -15 | damage -10",
-	  "type": 2,
-	  "stat_modifiers": {
-		"max_health": -15,
-		"damage": -10
-	  }
-	},
-	{
-	  "title": "Doomed Pact",
-	  "description": "max_health -25 | damage +5",
-	  "type": 2,
-	  "stat_modifiers": {
-		"max_health": -25,
-		"damage": 5
-	  }
-	},
-	{
-	  "title": "Frozen Shackles",
-	  "description": "max_health -5 | damage -15",
-	  "type": 2,
-	  "stat_modifiers": {
-		"max_health": -5,
-		"damage": -15
-	  }
-	},
-	{
-	  "title": "Blindfold of Misfortune",
-	  "description": "max_health +0 | damage -20",
-	  "type": 2,
-	  "stat_modifiers": {
-		"max_health": 0,
-		"damage": -20
-	  }
-	}
-  ]
-}
+	]
+  }
+  

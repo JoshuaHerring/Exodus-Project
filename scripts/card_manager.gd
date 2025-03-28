@@ -25,7 +25,7 @@ func load_cards_from_json(file_path):
 	var file = FileAccess.open(file_path, FileAccess.READ)
 	var content = file.get_as_text()
 	var json = JSON.new()
-	var parsed = json.parse(content)
+	json.parse(content)
 	var data = json.get_data()
 	
 	card_pool["reinforcements"] = data["reinforcements"]
@@ -98,7 +98,7 @@ func sendChoiceData(level_id: int, choice_type: int, player_id: int, score: Dict
 		"score": score 
 	}
 
-	var data = JSON.stringify(data_dict) 
+	#var data = JSON.stringify(data_dict) 
 	#print('here')
 	#http_request.request(api_url + "/choice", headers, HTTPClient.METHOD_POST, data)
 	#print('there')

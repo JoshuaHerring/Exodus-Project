@@ -23,14 +23,14 @@ var bullet_speed : int = 500
 var bullet_bounces : int = 0
 # The size of the bullet needs to modify how far away the bullet spawns otherwise larger bullets hit the player upon shooting
 var bullet_size : float = 1
-# Var's above this are stats that can be affect by cards
+var fire_cooldown : float = .5
+# Var's above this are stats that can be affected by cards
 
 var health : int = max_health
 #var bullets : int = max_bullets
 #var reload_speed : float = 1
 #var relaod_progress : float = reload_speed
 #var reloading : bool = false
-var fire_cooldown : float = .5
 var fire_cooldown_progress : float = fire_cooldown
 var fire_coolingdown : bool = false
 var direction : int = 1
@@ -82,7 +82,7 @@ func _physics_process(delta):
 					#relaod_progress = reload_speed
 					#bullets = max_bullets
 
-func shoot(bullet_velocity, bullet_start):
+func shoot(bul_velocity, bul_start):
 	if do_shoot and !fire_coolingdown:
 		bullet_audio.play()
 		#bullets -= 1
@@ -92,8 +92,8 @@ func shoot(bullet_velocity, bullet_start):
 		
 		do_shoot = false
 		var bulleteInstance = BULLET.instantiate()
-		bulleteInstance.position = bullet_start
-		bulleteInstance.linear_velocity = bullet_velocity
+		bulleteInstance.position = bul_start
+		bulleteInstance.linear_velocity = bul_velocity
 		get_parent().get_parent().get_node("Bullets").add_child(bulleteInstance, true)
 		
 		bulleteInstance.modifyBulletVariables(damage, bullet_bounces, bullet_size)
