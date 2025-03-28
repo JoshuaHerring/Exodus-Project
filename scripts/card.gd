@@ -36,13 +36,13 @@ func request_button_click():
 			
 		if card_data.type == 1:
 			var player = players.get_node(str(sender_id))
-			player.modifyPlayerStats(card_data.stat_modifiers)
+			player.modifyPlayerStats.rpc(card_data.stat_modifiers)
 		else:
 			for player in players.get_children():
 				if player.name == str(sender_id):
 					pass
 				else:
-					player.modifyPlayerStats(card_data.stat_modifiers)
+					player.modifyPlayerStats.rpc(card_data.stat_modifiers)
 		
 		var score = {"player1": 0, "player2": 0}
 		if game_manager.lastLevelId !=0:

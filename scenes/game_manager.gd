@@ -19,7 +19,7 @@ var lastLevelId = 0
 
 func _ready():
 # You can make the request anywhere and the response is handled in the on request complete signal function below
-	http_request.request(api_url + '/choice')
+	#http_request.request(api_url + '/choice')
 	get_level_files()
 
 func become_host():

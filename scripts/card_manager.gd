@@ -99,6 +99,6 @@ func sendChoiceData(level_id: int, choice_type: int, player_id: int, score: Dict
 	}
 
 	var data = JSON.stringify(data_dict) 
-	print('here')
-	http_request.request(api_url + "/choice", headers, HTTPClient.METHOD_POST, data)
-	print('there')
+	#print('here')
+	#http_request.request(api_url + "/choice", headers, HTTPClient.METHOD_POST, data)
+	#print('there')

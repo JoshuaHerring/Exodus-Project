@@ -152,17 +152,16 @@ func aim(aim_position):
 	shoot(bullet_velocity, hand.global_position)
 
 @rpc("any_peer", "call_local")
-func minusHealth(healthChange):
+func minusHealth(healthChange, reset = false):
 	health -= healthChange
 	if health <= 0 && alive:
 		health = 0
 		setDead()
 	
-	#if healthChange * -1 == max_health:
-		#print('only once pls')
-		#health = max_health
-	#texture_progress_bar.max_value = max_health
+	if reset:
+		health = max_health
 	texture_progress_bar.value = health
+
 
 func setDead():
 	alive = false
@@ -176,9 +175,8 @@ func rpc_switch_level():
 func setAlive():
 	alive = true
 	minusHealth.rpc(-max_health)
-	
-	#respawn_timer = RESPAWN_TIMER_MAX
 
+@rpc("authority", "call_local")
 func modifyPlayerStats(stats: Dictionary):
 	for stat_name in stats:
 		if stat_name in self:  # Check if the player has the stat as a property
@@ -195,7 +193,7 @@ func roundEnd():
 	hide()
 	
 func roundStart():
-	minusHealth.rpc(-max_health)
+	minusHealth.rpc(0, true)
 	show()
 	freeze = false
 	alive = true
