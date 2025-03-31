@@ -5,7 +5,7 @@
 		"description": "jump_velocity +80 | gravity -280",
 		"type": 1,
 		"stat_modifiers": {
-		  "jump_velocity": 80,
+		  "jump_velocity": -80,
 		  "gravity": -280
 		}
 	  },
@@ -78,7 +78,7 @@
 		"type": 1,
 		"stat_modifiers": {
 		  "gravity": -280,
-		  "jump_velocity": 80
+		  "jump_velocity": -80
 		}
 	  },
 	  {
@@ -97,7 +97,7 @@
 		"description": "jump_velocity -80 | gravity +280",
 		"type": 2,
 		"stat_modifiers": {
-		  "jump_velocity": -80,
+		  "jump_velocity": 80,
 		  "gravity": 280
 		}
 	  },
@@ -151,7 +151,7 @@
 		"description": "jump_velocity -80 | gravity +280",
 		"type": 2,
 		"stat_modifiers": {
-		  "jump_velocity": -80,
+		  "jump_velocity": 80,
 		  "gravity": 280
 		}
 	  },
