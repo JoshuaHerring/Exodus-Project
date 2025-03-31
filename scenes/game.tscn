@@ -60,6 +60,10 @@ text = "Host Game"
 layout_mode = 2
 text = "Join Game"
 
+[node name="clientIpText" type="LineEdit" parent="MultyplayerHud/Panel/VBoxContainer"]
+layout_mode = 2
+text = "127.0.0.1"
+
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://scenes/multiplayer_player.tscn")
 spawn_path = NodePath("../Players")

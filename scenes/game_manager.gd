@@ -6,6 +6,7 @@ extends Node
 @onready var players = $Players
 @onready var http_request = $HTTPRequest
 @onready var background_music = $BackgroundMusic
+@onready var client_ip_text = $MultyplayerHud/Panel/VBoxContainer/clientIpText
 
 const level_folder_path = "res://scenes/levels"
 const api_url = 'https://exodus-project-backend.onrender.com'
@@ -27,7 +28,7 @@ func become_host():
 	multyplayer_hud.hide()
 	
 func join_game():
-	MultiplayerManager.join_game()
+	MultiplayerManager.join_game(client_ip_text.text)
 	multyplayer_hud.hide()
 
 @rpc("authority", "call_local")

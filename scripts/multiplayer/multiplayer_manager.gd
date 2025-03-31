@@ -1,8 +1,8 @@
 extends Node
 
-const SERVER_PORT = 8080
+const SERVER_PORT = 2002
 # Change this to ipv_4 for it to work across devices on same network?
-const SERVER_IP = "127.0.0.1"
+#const SERVER_IP = "127.0.0.1"
 # REMEMBER THIS IS A GLOBAL SCRIPT THAT CAN BE ACCESSED FORM ANYWHERE BY TYPING IN THE NAME OF THE FILE THEN A PERIOD
 
 # Used to keep track of if the there is a host and if you are the host
@@ -26,20 +26,16 @@ func become_host():
 	
 	multiplayer.peer_connected.connect(_add_player_to_game)
 	multiplayer.peer_disconnected.connect(_del_player)
-	
-	#_remove_single_player()
-	
+		
 	_add_player_to_game(1)
 	
-func join_game():
+func join_game(ip):
 	multiplayer_mode = true
 	var clinet_peer = ENetMultiplayerPeer.new()
-	clinet_peer.create_client(SERVER_IP, SERVER_PORT)
+	clinet_peer.create_client(ip, SERVER_PORT)
 	
 	multiplayer.multiplayer_peer = clinet_peer
 	
-	#_remove_single_player()
-
 
 func _add_player_to_game(id: int):
 	print("Player %s has joined the game!" % id)
