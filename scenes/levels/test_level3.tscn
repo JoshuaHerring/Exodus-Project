@@ -1,0 +1,170 @@
+[gd_scene load_steps=6 format=3 uid="uid://dbt30dus6qlsq"]
+
+[ext_resource type="Script" path="res://scripts/level_scripts/test_level_3.gd" id="1_xbvcy"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_3gn28"]
+size = Vector3(650, 1150, 1)
+
+[sub_resource type="Gradient" id="Gradient_hur0r"]
+offsets = PackedFloat32Array(0.447917, 0.588542, 1)
+colors = PackedColorArray(0.441509, 0.441509, 0.441509, 1, 0, 0, 0, 1, 0.819608, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8kv4y"]
+gradient = SubResource("Gradient_hur0r")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kx8do"]
+size = Vector2(7, 495)
+
+[node name="TestLevel" type="Node2D"]
+script = ExtResource("1_xbvcy")
+
+[node name="background" type="MeshInstance2D" parent="."]
+rotation = 1.5708
+mesh = SubResource("BoxMesh_3gn28")
+texture = SubResource("GradientTexture2D_8kv4y")
+
+[node name="foreGround" type="Node2D" parent="."]
+
+[node name="Temp Platform" type="StaticBody2D" parent="foreGround"]
+position = Vector2(-80, -218)
+rotation = 1.65806
+scale = Vector2(2, 2)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="foreGround/Temp Platform"]
+shape = SubResource("RectangleShape2D_kx8do")
+
+[node name="ColorRect" type="ColorRect" parent="foreGround/Temp Platform"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -3.5
+offset_top = -247.5
+offset_right = 3.5
+offset_bottom = 247.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Temp Platform5" type="StaticBody2D" parent="foreGround"]
+position = Vector2(-575, -107)
+rotation = 3.14159
+scale = Vector2(2, 2)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="foreGround/Temp Platform5"]
+shape = SubResource("RectangleShape2D_kx8do")
+
+[node name="ColorRect" type="ColorRect" parent="foreGround/Temp Platform5"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -3.5
+offset_top = -247.5
+offset_right = 3.5
+offset_bottom = 247.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Temp Platform6" type="StaticBody2D" parent="foreGround"]
+position = Vector2(575, -86)
+rotation = 3.14159
+scale = Vector2(2, 2)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="foreGround/Temp Platform6"]
+shape = SubResource("RectangleShape2D_kx8do")
+
+[node name="ColorRect" type="ColorRect" parent="foreGround/Temp Platform6"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -3.5
+offset_top = -247.5
+offset_right = 3.5
+offset_bottom = 247.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Temp Platform3" type="StaticBody2D" parent="foreGround"]
+position = Vector2(-81, 72)
+rotation = 1.65806
+scale = Vector2(2, 2)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="foreGround/Temp Platform3"]
+shape = SubResource("RectangleShape2D_kx8do")
+
+[node name="ColorRect" type="ColorRect" parent="foreGround/Temp Platform3"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -3.5
+offset_top = -247.5
+offset_right = 3.5
+offset_bottom = 247.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Temp Platform2" type="StaticBody2D" parent="foreGround"]
+position = Vector2(80, -68)
+rotation = 1.48353
+scale = Vector2(2, 2)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="foreGround/Temp Platform2"]
+shape = SubResource("RectangleShape2D_kx8do")
+
+[node name="ColorRect" type="ColorRect" parent="foreGround/Temp Platform2"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -3.5
+offset_top = -247.5
+offset_right = 3.5
+offset_bottom = 247.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Temp Platform4" type="StaticBody2D" parent="foreGround"]
+position = Vector2(82, 217)
+rotation = 1.48353
+scale = Vector2(2, 2)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="foreGround/Temp Platform4"]
+shape = SubResource("RectangleShape2D_kx8do")
+
+[node name="ColorRect" type="ColorRect" parent="foreGround/Temp Platform4"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -3.5
+offset_top = -247.5
+offset_right = 3.5
+offset_bottom = 247.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
