@@ -2,7 +2,7 @@
 	"reinforcements": [
 	  {
 		"title": "Wings of the Phoenix",
-		"description": "jump_velocity +80 | gravity -280",
+		"description": "jump_velocity +80 \ngravity -280",
 		"type": 1,
 		"stat_modifiers": {
 		  "jump_velocity": -80,
@@ -11,7 +11,7 @@
 	  },
 	  {
 		"title": "Titan's Embrace",
-		"description": "max_health +20 | speed -48",
+		"description": "max_health +20 \nspeed -48",
 		"type": 1,
 		"stat_modifiers": {
 		  "max_health": 20,
@@ -20,7 +20,7 @@
 	  },
 	  {
 		"title": "Rapid Loader",
-		"description": "fire_cooldown -0.08 | bullet_speed +80",
+		"description": "fire_cooldown -0.08 \nbullet_speed +80",
 		"type": 1,
 		"stat_modifiers": {
 		  "fire_cooldown": -0.08,
@@ -29,7 +29,7 @@
 	  },
 	  {
 		"title": "Blazing Speed",
-		"description": "speed +48 | bullet_speed +80",
+		"description": "speed +48 \nbullet_speed +80",
 		"type": 1,
 		"stat_modifiers": {
 		  "speed": 48,
@@ -38,7 +38,7 @@
 	  },
 	  {
 		"title": "Iron Skin",
-		"description": "max_health +20 | gravity +280",
+		"description": "max_health +20 \ngravity +280",
 		"type": 1,
 		"stat_modifiers": {
 		  "max_health": 20,
@@ -47,7 +47,7 @@
 	  },
 	  {
 		"title": "Echo Shot",
-		"description": "bullet_bounces +4 | bullet_speed +80",
+		"description": "bullet_bounces +4 \nbullet_speed +80",
 		"type": 1,
 		"stat_modifiers": {
 		  "bullet_bounces": 4,
@@ -56,7 +56,7 @@
 	  },
 	  {
 		"title": "Reckless Fury",
-		"description": "damage +2 | fire_cooldown +0.08",
+		"description": "damage +2 \nfire_cooldown +0.08",
 		"type": 1,
 		"stat_modifiers": {
 		  "damage": 2,
@@ -65,7 +65,7 @@
 	  },
 	  {
 		"title": "Bulletstorm",
-		"description": "fire_cooldown -0.08 | speed +48",
+		"description": "fire_cooldown -0.08 \nspeed +48",
 		"type": 1,
 		"stat_modifiers": {
 		  "fire_cooldown": -0.08,
@@ -74,7 +74,7 @@
 	  },
 	  {
 		"title": "Levitating Amulet",
-		"description": "gravity -280 | jump_velocity +80",
+		"description": "gravity -280 \njump_velocity +80",
 		"type": 1,
 		"stat_modifiers": {
 		  "gravity": -280,
@@ -83,7 +83,7 @@
 	  },
 	  {
 		"title": "Sharpened Edge",
-		"description": "damage +2 | speed +48",
+		"description": "damage +2 \nspeed +48",
 		"type": 1,
 		"stat_modifiers": {
 		  "damage": 2,
@@ -94,7 +94,7 @@
 	"punishments": [
 	  {
 		"title": "Stone Boots",
-		"description": "jump_velocity -80 | gravity +280",
+		"description": "jump_velocity -80 \ngravity +280",
 		"type": 2,
 		"stat_modifiers": {
 		  "jump_velocity": 80,
@@ -103,7 +103,7 @@
 	  },
 	  {
 		"title": "Cursed Armor",
-		"description": "max_health -20 | speed -48",
+		"description": "max_health -20 \nspeed -48",
 		"type": 2,
 		"stat_modifiers": {
 		  "max_health": -20,
@@ -112,7 +112,7 @@
 	  },
 	  {
 		"title": "Sluggish Reflexes",
-		"description": "fire_cooldown +0.08 | speed -48",
+		"description": "fire_cooldown +0.08 \nspeed -48",
 		"type": 2,
 		"stat_modifiers": {
 		  "fire_cooldown": 0.08,
@@ -121,7 +121,7 @@
 	  },
 	  {
 		"title": "Rusty Barrel",
-		"description": "bullet_speed -80 | damage -2",
+		"description": "bullet_speed -80 \ndamage -2",
 		"type": 2,
 		"stat_modifiers": {
 		  "bullet_speed": -80,
@@ -130,7 +130,7 @@
 	  },
 	  {
 		"title": "Shackles of Despair",
-		"description": "speed -48 | gravity +280",
+		"description": "speed -48 \ngravity +280",
 		"type": 2,
 		"stat_modifiers": {
 		  "speed": -48,
@@ -139,7 +139,7 @@
 	  },
 	  {
 		"title": "Twisted Ammunition",
-		"description": "bullet_bounces -2 | bullet_speed -80",
+		"description": "bullet_bounces -2 \nbullet_speed -80",
 		"type": 2,
 		"stat_modifiers": {
 		  "bullet_bounces": -2,
@@ -148,7 +148,7 @@
 	  },
 	  {
 		"title": "Heavy Burden",
-		"description": "jump_velocity -80 | gravity +280",
+		"description": "jump_velocity -80 \ngravity +280",
 		"type": 2,
 		"stat_modifiers": {
 		  "jump_velocity": 80,
@@ -157,7 +157,7 @@
 	  },
 	  {
 		"title": "Curse of Hesitation",
-		"description": "fire_cooldown +0.08 | speed -48",
+		"description": "fire_cooldown +0.08 \nspeed -48",
 		"type": 2,
 		"stat_modifiers": {
 		  "fire_cooldown": 0.08,
@@ -166,7 +166,7 @@
 	  },
 	  {
 		"title": "Waning Strength",
-		"description": "damage -2 | max_health -20",
+		"description": "damage -2 \nmax_health -20",
 		"type": 2,
 		"stat_modifiers": {
 		  "damage": -2,
@@ -175,7 +175,7 @@
 	  },
 	  {
 		"title": "Drained Essence",
-		"description": "max_health -20 | speed -48",
+		"description": "max_health -20 \nspeed -48",
 		"type": 2,
 		"stat_modifiers": {
 		  "max_health": -20,
