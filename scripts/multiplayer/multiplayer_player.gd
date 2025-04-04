@@ -5,12 +5,14 @@ const BULLET = preload("res://scenes/bullet.tscn")
 @onready var hand = $Hand
 @onready var texture_progress_bar = $TextureProgressBar
 @onready var bullet_audio = $BulletAudio
+@onready var pillager = $Pillager
 
-
+const BLUE_PILL = preload("res://assets/bluePill.png")
+const RED_PILL = preload("res://assets/redPill.png")
 
 const TERMINAL_VELOCITY : int = 600
 const WALL_SLIDE_VELOCITY : int = 150
-const HAND_DISTANCE : float = 20
+const HAND_DISTANCE : float = 30
 #const RESPAWN_TIMER_MAX : float = 1
 
 var jump_velocity : int = -500
@@ -51,6 +53,15 @@ var freeze: bool = false
 @export var cursor_position : Vector2
 
 func _ready():
+	if player_id == 1:
+		pillager.texture = RED_PILL
+		pillager.rotation = -PI / 2
+
+	else:
+		pillager.texture = BLUE_PILL
+		pillager.rotation = PI / 2
+
+		
 	texture_progress_bar.value = health
 	texture_progress_bar.max_value = max_health
 	$NameLabel.text = name.substr(0, 3)
