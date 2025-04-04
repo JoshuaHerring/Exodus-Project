@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://l8xm0qaocywu"]
+[gd_scene load_steps=13 format=3 uid="uid://l8xm0qaocywu"]
 
 [ext_resource type="Script" path="res://scripts/multiplayer/multiplayer_player.gd" id="1_db2ai"]
 [ext_resource type="Script" path="res://scenes/input_syncronizer.gd" id="2_b6l5e"]
+[ext_resource type="Texture2D" uid="uid://bt2sqtqg5tg74" path="res://assets/bullet.png" id="3_jtns5"]
 [ext_resource type="AudioStream" uid="uid://ktupayr2fgrk" path="res://assets/bulletSound.wav" id="3_umemq"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_rnu7b"]
@@ -77,6 +78,7 @@ metadata/_edit_group_ = true
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Hand"]
 mesh = SubResource("SphereMesh_tpg06")
+texture = ExtResource("3_jtns5")
 
 [node name="NameLabel" type="Label" parent="."]
 offset_left = -30.0

@@ -1,17 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://c7cn6kybht78s"]
+[gd_scene load_steps=8 format=3 uid="uid://c7cn6kybht78s"]
 
 [ext_resource type="Script" path="res://scripts/bullet.gd" id="1_8oru1"]
+[ext_resource type="Texture2D" uid="uid://bt2sqtqg5tg74" path="res://assets/bullet.png" id="2_5xhny"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_i551y"]
 friction = 0.0
 bounce = 1.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_3k3gp"]
-radius = 2.0
-
 [sub_resource type="SphereMesh" id="SphereMesh_xnkh6"]
 radius = 2.0
 height = 4.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3k3gp"]
+radius = 2.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_558a0"]
 radius = 2.0
@@ -35,15 +36,18 @@ mass = 0.001
 physics_material_override = SubResource("PhysicsMaterial_i551y")
 script = ExtResource("1_8oru1")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_3k3gp")
-
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
 mesh = SubResource("SphereMesh_xnkh6")
+texture = ExtResource("2_5xhny")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_3k3gp")
 
 [node name="collisionDetector" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="collisionDetector"]
+visible = false
 shape = SubResource("CircleShape2D_558a0")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]

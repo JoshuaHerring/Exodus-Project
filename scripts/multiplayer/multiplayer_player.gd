@@ -71,11 +71,7 @@ func _physics_process(delta):
 	if freeze:
 		return
 	cursor_position = get_global_mouse_position()
-	#if !alive:
-		#respawn_timer -= delta
-		#if respawn_timer < 0:
-			#setAlive()
-	#else:
+
 	if alive:
 		if multiplayer.is_server():
 			movement(delta)
@@ -208,6 +204,8 @@ func roundStart():
 	show()
 	freeze = false
 	alive = true
+	
+const STEP_HEIGHT = 1.9
 
 
 func movement(delta):
