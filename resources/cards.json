@@ -47,10 +47,10 @@
 	  },
 	  {
 		"title": "Echo Shot",
-		"description": "bullet_bounces +4 \nbullet_speed +80",
+		"description": "bullet_jump +1 \nbullet_speed +80",
 		"type": 1,
 		"stat_modifiers": {
-		  "bullet_bounces": 4,
+		  "bullet_bounces": 1,
 		  "bullet_speed": 80
 		}
 	  },
@@ -139,10 +139,10 @@
 	  },
 	  {
 		"title": "Twisted Ammunition",
-		"description": "bullet_bounces -2 \nbullet_speed -80",
+		"description": "bullet_jump -1 \nbullet_speed -80",
 		"type": 2,
 		"stat_modifiers": {
-		  "bullet_bounces": -2,
+		  "bullet_bounces": -1,
 		  "bullet_speed": -80
 		}
 	  },

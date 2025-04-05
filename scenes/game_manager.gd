@@ -7,6 +7,7 @@ extends Node
 @onready var http_request = $HTTPRequest
 @onready var background_music = $BackgroundMusic
 @onready var client_ip_text = $MultyplayerHud/Panel/VBoxContainer/clientIpText
+@onready var stat_sync = $statSync
 
 const level_folder_path = "res://scenes/levels"
 const api_url = 'https://exodus-project-backend.onrender.com'
@@ -17,11 +18,19 @@ var cardManagerOpen = false
 var files = []
 var roundVictorId = 0
 var lastLevelId = 0
+var score = {
+	'host': 0,
+	'client': 0
+}
 
 func _ready():
 # You can make the request anywhere and the response is handled in the on request complete signal function below
 	#http_request.request(api_url + '/choice')
 	get_level_files()
+
+	if multiplayer.is_server():
+		stat_sync.set_multiplayer_authority(multiplayer.get_unique_id())
+
 
 func become_host():
 	MultiplayerManager.become_host()
@@ -60,6 +69,13 @@ func switch_level():
 		return
 		
 	roundVictorId = living_players[0].player_id
+	sync_round_victor_id.rpc(roundVictorId)
+	
+	if roundVictorId == 1:
+		score.host += 1
+	else:
+		score.client += 1
+		print(score)
 	lastLevelId = 	current_level.get_child(0).id
 
 	var index : int = randi() % files.size()
@@ -87,6 +103,10 @@ func startCardManager():
 		roundEndPlayers.rpc()
 	cardManagerOpen = true
 	card_manager.startCardManager()
+
+@rpc("unreliable")
+func sync_round_victor_id(id: int):
+	roundVictorId = id
 
 
 func endCardManager():

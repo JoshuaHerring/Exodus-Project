@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://i61ietw70s08"]
+[gd_scene load_steps=7 format=3 uid="uid://i61ietw70s08"]
 
 [ext_resource type="Script" path="res://scripts/card_manager.gd" id="1_xfk40"]
+[ext_resource type="Script" path="res://scripts/winner.gd" id="2_8ama7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_kx1f8"]
 font_size = 28
@@ -9,6 +10,12 @@ font_color = Color(0, 0, 0, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_kjwin"]
 font_size = 30
 font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8g0k4"]
+font_size = 60
+
+[sub_resource type="LabelSettings" id="LabelSettings_equjd"]
+font_size = 50
 
 [node name="CardManager" type="Control"]
 layout_mode = 3
@@ -60,3 +67,35 @@ label_settings = SubResource("LabelSettings_kjwin")
 horizontal_alignment = 1
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="Winner" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.478431, 0.6, 0.619608, 1)
+script = ExtResource("2_8ama7")
+
+[node name="Winner" type="Label" parent="Winner"]
+layout_mode = 0
+offset_left = 319.0
+offset_top = 191.0
+offset_right = 818.0
+offset_bottom = 274.0
+text = "Player %%% Won"
+label_settings = SubResource("LabelSettings_8g0k4")
+
+[node name="Loser" type="Label" parent="Winner"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 301.0
+offset_right = 1000.0
+offset_bottom = 475.0
+text = "Loser, Choose a skill and get your Revenge."
+label_settings = SubResource("LabelSettings_equjd")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Timer" type="Timer" parent="Winner"]
+wait_time = 5.0
+
+[connection signal="timeout" from="Winner/Timer" to="Winner" method="_on_timer_timeout"]

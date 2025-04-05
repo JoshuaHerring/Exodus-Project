@@ -8,6 +8,9 @@ const headers = ["Content-Type: application/json"]
 @onready var h_box_reinforcements = $HBoxReinforcements
 @onready var h_box_punishments = $HBoxPunishments
 @onready var http_request = $HTTPRequest
+@onready var winner = $Winner
+@onready var game_manager = $"../"
+
 
 #var card_pool = []
 var card_pool = {
@@ -34,6 +37,7 @@ func load_cards_from_json(file_path):
 # Function that runs when the button is clicked
 func startCardManager():
 	show()
+	winner.display(game_manager.roundVictorId)
 	get_random_cards(4)
 
 @rpc("any_peer", "call_local")

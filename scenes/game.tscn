@@ -1,10 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://ckp5aaa5o8pr5"]
+[gd_scene load_steps=9 format=3 uid="uid://ckp5aaa5o8pr5"]
 
 [ext_resource type="Script" path="res://scripts/reset_area.gd" id="1_x7kh7"]
 [ext_resource type="PackedScene" uid="uid://b8gj84b46wvco" path="res://scenes/mainMenu.tscn" id="2_64mhw"]
 [ext_resource type="Script" path="res://scenes/game_manager.gd" id="2_j34bk"]
 [ext_resource type="AudioStream" uid="uid://bfxb0dj1dxkg4" path="res://assets/Arcade.ogg" id="5_4vygv"]
 [ext_resource type="PackedScene" uid="uid://i61ietw70s08" path="res://scenes/card_manager.tscn" id="5_jf42t"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_t0jcs"]
+properties/0/path = NodePath(".:roundVictorId")
+properties/0/spawn = true
+properties/0/replication_mode = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_edwtl"]
 size = Vector2(1500, 20)
@@ -14,6 +19,9 @@ size = Vector2(20, 2000)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("2_j34bk")
+
+[node name="statSync" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_t0jcs")
 
 [node name="CurrentLevel" type="Node2D" parent="."]
 
